@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6Fz-NZ-JjB">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6243"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="RSA-Ut-FsJ">
+            <objects>
+                <navigationController id="6Fz-NZ-JjB" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="f8q-oh-CJV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Sj1-Gu-2O6" kind="relationship" relationship="rootViewController" id="Aiv-zj-Irt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KNq-OI-sb6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-150" y="303"/>
+        </scene>
+        <!--音乐库-->
+        <scene sceneID="Nuk-cw-kef">
+            <objects>
+                <viewController id="Sj1-Gu-2O6" customClass="SFMainViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3xh-zg-OKu"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xnx-A4-bbr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uCW-gb-Myq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gYQ-NL-FMz" userLabel="条状背景">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xR-dc-Oe1">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="x7t-LP-Gv9"/>
+                                        </constraints>
+                                        <state key="normal" title="首页">
+                                            <color key="titleColor" red="0.058823529411764705" green="0.47450980392156861" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buttonAction:" destination="Sj1-Gu-2O6" eventType="touchUpInside" id="5dG-yD-KG1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YFn-BP-cXQ">
+                                        <rect key="frame" x="150" y="0.0" width="150" height="44"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="歌单">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buttonAction:" destination="Sj1-Gu-2O6" eventType="touchUpInside" id="GEy-iI-jLf"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SF2-Ay-M08">
+                                        <rect key="frame" x="300" y="0.0" width="150" height="44"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="榜单">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buttonAction:" destination="Sj1-Gu-2O6" eventType="touchUpInside" id="b91-wr-Dht"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VR0-Kr-sIX">
+                                        <rect key="frame" x="450" y="0.0" width="150" height="44"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="歌手">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buttonAction:" destination="Sj1-Gu-2O6" eventType="touchUpInside" id="9eM-Mz-EAL"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.75613862030000001" blue="0.12404605639999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="YFn-BP-cXQ" firstAttribute="height" secondItem="9xR-dc-Oe1" secondAttribute="height" id="68I-Bn-A8r"/>
+                                    <constraint firstItem="SF2-Ay-M08" firstAttribute="width" secondItem="VR0-Kr-sIX" secondAttribute="width" id="9eq-Is-o5c"/>
+                                    <constraint firstItem="SF2-Ay-M08" firstAttribute="height" secondItem="YFn-BP-cXQ" secondAttribute="height" id="CLI-9y-4td"/>
+                                    <constraint firstAttribute="height" constant="44" id="D4e-QD-02a"/>
+                                    <constraint firstItem="SF2-Ay-M08" firstAttribute="height" secondItem="VR0-Kr-sIX" secondAttribute="height" id="FD7-Bf-1ci"/>
+                                    <constraint firstItem="VR0-Kr-sIX" firstAttribute="leading" secondItem="SF2-Ay-M08" secondAttribute="trailing" id="MDX-EC-n4b"/>
+                                    <constraint firstItem="YFn-BP-cXQ" firstAttribute="bottom" secondItem="9xR-dc-Oe1" secondAttribute="bottom" id="NjU-Ud-BML"/>
+                                    <constraint firstItem="SF2-Ay-M08" firstAttribute="bottom" secondItem="VR0-Kr-sIX" secondAttribute="bottom" id="R0P-rY-TRc"/>
+                                    <constraint firstItem="SF2-Ay-M08" firstAttribute="width" secondItem="YFn-BP-cXQ" secondAttribute="width" id="Rfe-oI-sXw"/>
+                                    <constraint firstItem="SF2-Ay-M08" firstAttribute="leading" secondItem="YFn-BP-cXQ" secondAttribute="trailing" id="VRW-ve-S1R"/>
+                                    <constraint firstAttribute="trailing" secondItem="VR0-Kr-sIX" secondAttribute="trailing" id="XiO-Lx-kVU"/>
+                                    <constraint firstItem="YFn-BP-cXQ" firstAttribute="width" secondItem="9xR-dc-Oe1" secondAttribute="width" id="aUt-cA-SHF"/>
+                                    <constraint firstItem="9xR-dc-Oe1" firstAttribute="top" secondItem="gYQ-NL-FMz" secondAttribute="top" id="ewX-2Z-e1c"/>
+                                    <constraint firstItem="9xR-dc-Oe1" firstAttribute="leading" secondItem="gYQ-NL-FMz" secondAttribute="leading" id="mML-kT-TLW"/>
+                                    <constraint firstItem="SF2-Ay-M08" firstAttribute="bottom" secondItem="YFn-BP-cXQ" secondAttribute="bottom" id="vVd-cM-ZxS"/>
+                                    <constraint firstItem="YFn-BP-cXQ" firstAttribute="leading" secondItem="9xR-dc-Oe1" secondAttribute="trailing" id="yQg-Z8-RcQ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gYQ-NL-FMz" firstAttribute="leading" secondItem="uCW-gb-Myq" secondAttribute="leadingMargin" constant="-16" id="STF-kN-OUt"/>
+                            <constraint firstItem="gYQ-NL-FMz" firstAttribute="top" secondItem="3xh-zg-OKu" secondAttribute="bottom" id="X0I-KX-NSM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gYQ-NL-FMz" secondAttribute="trailing" constant="-16" id="qu7-5M-gKQ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="音乐库" id="5IW-O2-xnb"/>
+                    <connections>
+                        <outlet property="backgroundBarView" destination="gYQ-NL-FMz" id="202-uv-ioA"/>
+                        <outlet property="bgBarView" destination="gYQ-NL-FMz" id="iIY-r1-QzQ"/>
+                        <outlet property="mainViewButton" destination="9xR-dc-Oe1" id="Ol5-bR-sCC"/>
+                        <outlet property="rankViewButton" destination="SF2-Ay-M08" id="WC7-go-InO"/>
+                        <outlet property="singerButton" destination="VR0-Kr-sIX" id="xKa-M1-iRG"/>
+                        <outlet property="songOrderButton" destination="YFn-BP-cXQ" id="wRe-Rl-u7t"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xJI-bH-Tf1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="530" y="303"/>
+        </scene>
+    </scenes>
+</document>

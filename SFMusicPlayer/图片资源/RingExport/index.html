@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>百度音乐_文件传输</title>
+    <style type="text/css">
+        body, h1, h2, h3, h4, h5, ul, li{
+            margin: 0;
+            padding: 0;
+            font-family: 'microsoft yahei';
+            list-style: none;
+            font-weight: normal;
+            font-size: 14px;
+        }
+        body {
+            width: 600px;
+            margin: 0 auto;
+        }
+        .header {
+            overflow: hidden;
+            padding: 20px 40px;
+            background: url(./static/image/line.png) 0 bottom no-repeat;
+            zoom: 1;
+        }
+        .logo {
+            width: 68px;
+            height: 68px;
+            background: url(./static/image/logo.png) no-repeat;
+            float: left;
+        }
+        .header h1 {
+            float: left;
+            font-size: 30px;
+            line-height: 68px;
+            margin-left: 20px;
+        }
+        .body {
+            padding: 30px 40px;
+            color: #666;
+            clear: both;
+        }
+        .body h3 {
+            background: url(./static/image/ok.png) left no-repeat;
+            font-size: 18px;
+            line-height: 30px;
+            padding-left: 40px;
+            color: #000;
+        }
+        .tip {
+            padding: 18px 0;
+        }
+        .btn {
+            cursor: pointer;
+        }
+        input {
+            float: left;
+            margin: 14px 10px 0 0;
+            cursor: pointer;
+        }
+        .filelist {
+            width: 600px;
+            border: 1px solid #d8d8d8;
+            border-radius: 3px;
+            margin-top: 10px;
+            position: relative;
+        }
+        .no-data {
+            height: 300px;
+            width: 100%;
+            line-height: 300px;
+            text-align: center;
+            position: absolute;
+        }
+        .filelist ul {
+            height: 400px;
+            position: relative;
+            overflow: auto;
+        }
+        .filelist h4 {
+            height: 40px;
+            line-height: 40px;
+            background: #f3f3f3;
+            padding-left: 10px;
+        }
+        .filelist li {
+            height: 40px;
+            padding-left: 22px;
+            border-top: 1px solid #eee;
+            overflow: hidden;
+            background: #fff;
+        }
+        .filelist span {
+            height: 40px;
+            line-height: 40px;
+        }
+        .count {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .count i {
+            font-style: normal;
+        }
+        .info {
+            width: 500px;
+        }
+        .status {
+            width: 100px;
+            color: #13aaf7;
+            margin: 0 5px;
+        }
+        .success {
+
+        }
+        .fail {
+            color: #db0909;
+        }
+        .filelist .delete {
+            width: 58px;
+            height: 30px;
+            background: url(./static/image/del.png) no-repeat;
+            margin-top: 5px;
+            line-height: 30px;
+            text-align: center;
+        }
+        .down {
+            width: 152px;
+            height: 47px;
+            line-height: 47px;
+            background: url(./static/image/commit.png) no-repeat;
+            text-align: center;
+            color: #fff;
+            font-size: 20px;
+            margin: 10px 32px 0 0;
+            float: left;
+        }
+        .filelist span.download{
+            width: 58px;
+            height: 30px;
+            float: right;;
+            text-align: center;
+            line-height: 30px;
+            background: url(./static/image/down.png) no-repeat;
+            margin: 5px 5px 0 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="logo"></div>
+    <h1>百度音乐电脑文件传输</h1>
+</div>
+<div class="body">
+    <h3>已连接您的手机，您可以从手机上的铃声文件保存到电脑</h3>
+    <div class="filelist">
+        <h4>文件列表</h4>
+        
+        <ul>
+
+        </ul>
+    </div>
+</div>
+<script type="text/javascript" src="./static/js/jquery.js"></script>
+
+<script type="text/javascript">
+
+    
+    $.ajax({
+        url:"/?method=getdir",
+        dataType:"json",
+        success:function(data){
+            var filelist_json = data;
+
+            var mainLink = '/?method=downloadfile&path=';
+            var localLInk = filelist_json.dir_list[0].dir_path;
+            
+
+
+            var SongDown = function(options) {
+                options = options || {};
+                this.init.call(this, options);
+            };
+
+            SongDown.prototype = {
+                init: function (options) {
+                    this.fileList = $('.filelist').find('ul');
+                    this.countDom = $('.count').find('i');
+                    this.noDataDom = $('.no-data');
+                    this.count = 0;
+                    this.checkall = $('#checkall');
+                    this.downBtn = $('.download');
+                
+                    var trueFile_list = filelist_json.dir_list[0].file_list;
+
+
+                    for(var i = 0;i < trueFile_list.length;i++){
+
+                        this.updateFileList(trueFile_list[i])
+                    }
+
+                    this._bindEvent(); 
+                },
+
+
+           _bindEvent: function() {
+           $('.download').each(function(){
+                               $(this).click(function(){
+                                             var fileName = $(this).closest("li").find(".songname").text(),
+                                             MidName_arr = fileName.split(".");
+                                             var MidName_str = [];
+                                             for(var i=0;i<MidName_arr.length;i++){
+                                             if(i<(MidName_arr.length-1)){
+                                             MidName_str.push(escape(MidName_arr[i]));
+                                             }else if(i==(MidName_arr.length-1)){
+                                             MidName_str.push(MidName_arr[i]);
+                                             }
+                                             }
+                                             var TrueName = MidName_str.join(".");
+                                             var TrueLink = mainLink+localLInk+"/"+encodeURIComponent(fileName);
+                                             window.open(mainLink+localLInk+"/"+encodeURIComponent(fileName));
+                                             })
+                               })
+           
+           },
+
+                /**
+                 * 更新fileList
+                 */
+                updateFileList: function(file) {
+                    var self = this,
+                        li = $('<li id="' + file.is_dir + '"></li>');
+                    li.append('<span class="download">下载</span>');    
+                    li.append('<span class="info"><span class="songname">' + file.file_name + '</span>(' + (file.size / 1024 / 1024).toFixed(1) +'MB)</span>');
+
+                    li.appendTo(this.fileList).hide().slideDown();
+
+                },
+
+            }
+
+            SongDown = new SongDown();
+        }
+    });
+</script>
+</body>
+</html>

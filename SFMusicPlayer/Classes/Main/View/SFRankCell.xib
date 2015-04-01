@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6249" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6243"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="rank" id="gTV-IL-0wX" customClass="SFRankCell">
+            <rect key="frame" x="0.0" y="0.0" width="144" height="200"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="144" height="200"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_default_playlist546" translatesAutoresizingMaskIntoConstraints="NO" id="sDm-AZ-xF2">
+                        <rect key="frame" x="0.0" y="0.0" width="144" height="144"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="sDm-AZ-xF2" secondAttribute="height" multiplier="1:1" id="cbC-r7-Qf4"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BbR-8h-xgc">
+                        <rect key="frame" x="93" y="95" width="46" height="46"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="46" id="5C3-9d-0Pf"/>
+                            <constraint firstAttribute="width" constant="46" id="cuY-Vw-4v9"/>
+                        </constraints>
+                        <state key="normal" image="bt_playlist_play_normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="selected" image="bt_playlist_play_press"/>
+                        <state key="highlighted" image="bt_playlist_play_press"/>
+                        <connections>
+                            <action selector="discButtonAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="HKT-m8-PXL"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.小苹果" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ri0-w8-SmQ">
+                        <rect key="frame" x="0.0" y="146" width="144" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2.月光" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x5a-Qd-xAo">
+                        <rect key="frame" x="0.0" y="165" width="144" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.大苹果" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LDI-KJ-86E">
+                        <rect key="frame" x="0.0" y="183" width="144" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Ri0-w8-SmQ" firstAttribute="width" secondItem="x5a-Qd-xAo" secondAttribute="width" id="4hs-Am-kz1"/>
+                <constraint firstItem="Ri0-w8-SmQ" firstAttribute="width" secondItem="sDm-AZ-xF2" secondAttribute="width" id="4nT-sr-0d4"/>
+                <constraint firstItem="Ri0-w8-SmQ" firstAttribute="leading" secondItem="sDm-AZ-xF2" secondAttribute="leading" id="5eY-MJ-7t7"/>
+                <constraint firstItem="x5a-Qd-xAo" firstAttribute="height" secondItem="LDI-KJ-86E" secondAttribute="height" id="6Bv-Ir-d8s"/>
+                <constraint firstAttribute="bottom" secondItem="LDI-KJ-86E" secondAttribute="bottom" id="BgK-J4-XCR"/>
+                <constraint firstAttribute="trailing" secondItem="sDm-AZ-xF2" secondAttribute="trailing" id="CCm-bC-sKX"/>
+                <constraint firstItem="Ri0-w8-SmQ" firstAttribute="top" secondItem="sDm-AZ-xF2" secondAttribute="bottom" constant="2" id="CHv-xv-ZkE"/>
+                <constraint firstItem="Ri0-w8-SmQ" firstAttribute="height" secondItem="x5a-Qd-xAo" secondAttribute="height" id="J7P-t6-Xr2"/>
+                <constraint firstItem="sDm-AZ-xF2" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="MPc-wO-F3H"/>
+                <constraint firstItem="x5a-Qd-xAo" firstAttribute="width" secondItem="LDI-KJ-86E" secondAttribute="width" id="aYL-xX-NZm"/>
+                <constraint firstItem="LDI-KJ-86E" firstAttribute="top" secondItem="x5a-Qd-xAo" secondAttribute="bottom" constant="2" id="cjq-Kh-Jvp"/>
+                <constraint firstItem="Ri0-w8-SmQ" firstAttribute="leading" secondItem="x5a-Qd-xAo" secondAttribute="leading" id="dlU-XO-g24"/>
+                <constraint firstItem="x5a-Qd-xAo" firstAttribute="leading" secondItem="LDI-KJ-86E" secondAttribute="leading" id="hWe-G8-rSQ"/>
+                <constraint firstItem="sDm-AZ-xF2" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="mAx-dv-zuW"/>
+                <constraint firstItem="x5a-Qd-xAo" firstAttribute="top" secondItem="Ri0-w8-SmQ" secondAttribute="bottom" constant="2" id="oIq-to-Vmp"/>
+                <constraint firstItem="Ri0-w8-SmQ" firstAttribute="top" secondItem="BbR-8h-xgc" secondAttribute="bottom" constant="5" id="xTR-Yh-hCD"/>
+                <constraint firstAttribute="trailing" secondItem="BbR-8h-xgc" secondAttribute="trailing" constant="5" id="zWa-o5-baJ"/>
+            </constraints>
+            <connections>
+                <outlet property="discButton" destination="BbR-8h-xgc" id="9X4-Ad-yWe"/>
+                <outlet property="firstLabel" destination="Ri0-w8-SmQ" id="HSj-wt-M02"/>
+                <outlet property="rankOrderImage" destination="sDm-AZ-xF2" id="wOL-qa-1ib"/>
+                <outlet property="secondLabel" destination="x5a-Qd-xAo" id="0a7-c2-c8k"/>
+                <outlet property="thirdLabel" destination="LDI-KJ-86E" id="anf-aN-HmF"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="bt_playlist_play_normal" width="46" height="46"/>
+        <image name="bt_playlist_play_press" width="46" height="46"/>
+        <image name="img_default_playlist546" width="182" height="182"/>
+    </resources>
+</document>

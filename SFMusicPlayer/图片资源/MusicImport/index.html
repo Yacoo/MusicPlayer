@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>百度音乐_文件传输</title>
+    <style type="text/css">
+        body, h1, h2, h3, h4, h5, ul, li{
+            margin: 0;
+            padding: 0;
+            font-family: 'microsoft yahei';
+            list-style: none;
+            font-weight: normal;
+            font-size: 14px;
+        }
+        body {
+            width: 600px;
+            margin: 0 auto;
+        }
+        .header {
+            overflow: hidden;
+            padding: 20px 40px;
+            background: url(./static/image/line.png) 0 bottom no-repeat;
+            zoom: 1;
+        }
+        .logo {
+            width: 68px;
+            height: 68px;
+            background: url(./static/image/logo.png) no-repeat;
+            float: left;
+        }
+        .header h1 {
+            float: left;
+            font-size: 30px;
+            line-height: 68px;
+            margin-left: 20px;
+        }
+        .body {
+            padding: 30px 40px;
+            color: #666;
+            clear: both;
+        }
+        .body h3 {
+            background: url(./static/image/ok.png) left no-repeat;
+            font-size: 18px;
+            line-height: 30px;
+            padding-left: 40px;
+            color: #000;
+        }
+        .tip {
+            padding: 18px 0;
+        }
+        .btn {
+            cursor: pointer;
+        }
+        .add {
+            width: 118px;
+            height: 40px;
+            background: url(./static/image/add.png) no-repeat;
+            position: relative;
+            float: left;
+            margin-top: 13px;
+        }
+        .add .inner {
+            line-height: 39px;
+            padding-left: 43px;
+        }
+        .swfupload {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .filelist {
+            width: 485px;
+            border: 1px solid #d8d8d8;
+            border-radius: 3px;
+            margin-top: 10px;
+            position: relative;
+        }
+        .no-data {
+            height: 300px;
+            width: 100%;
+            line-height: 300px;
+            text-align: center;
+            position: absolute;
+        }
+        .filelist ul {
+            height: 300px;
+            position: relative;
+            overflow: auto;
+        }
+        .filelist h4 {
+            height: 40px;
+            line-height: 40px;
+            background: #f3f3f3;
+            padding-left: 10px;
+        }
+        .filelist li {
+            height: 40px;
+            padding-left: 22px;
+            border-top: 1px solid #eee;
+            overflow: hidden;
+            background: #fff;
+        }
+        .filelist span {
+            display: block;
+            float: left;
+            height: 40px;
+            line-height: 40px;
+        }
+        .count {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .count i {
+            font-style: normal;
+        }
+        .info {
+            width: 270px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .status {
+            width: 100px;
+            color: #13aaf7;
+            margin: 0 5px;
+        }
+        .success {
+
+        }
+        .fail {
+            color: #db0909;
+        }
+        .filelist .delete {
+            width: 58px;
+            height: 30px;
+            background: url(./static/image/del.png) no-repeat;
+            margin-top: 5px;
+            line-height: 30px;
+            text-align: center;
+        }
+        .commit,
+        .cancel {
+            width: 152px;
+            height: 47px;
+            line-height: 47px;
+            background: url(./static/image/commit.png) no-repeat;
+            text-align: center;
+            color: #fff;
+            font-size: 20px;
+            margin: 10px 32px 0 0;
+            float: right;
+        }
+        .cancel {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="logo"></div>
+    <h1>百度音乐电脑文件传输</h1>
+</div>
+<div class="body">
+    <h3>已连接您的手机，您可以向手机上发送音乐文件</h3>
+    <div class="tip">提示：支持mp3,aac,m4a,mp4,wav,ape,flac,ogg,amr,wma文件格式</div>
+    <div class="filelist">
+        <h4>文件列表</h4>
+        <div class="count">共 <i>0</i> 首歌曲</div>
+        <div class="no-data">列表为空</div>
+        <ul></ul>
+    </div>
+    <div class="add btn"><span class="inner">添加文件</span></div>
+    <div class="commit btn">发送</div>
+    <div class="cancel btn">取消</div>
+</div>
+<script type="text/javascript" src="./static/js/jquery.js"></script>
+<script type="text/javascript" src="./static/js/swfupload.js"></script>
+<script type="text/javascript">
+    var SwfUpload = function(options) {
+        options = options || {};
+        this.init.call(this, options);
+    };
+
+    SwfUpload.prototype = {
+        init: function (options) {
+            this.uploadPath = options.uploadPath || '/upload';
+            this.uploadBtn = $('.add');
+            this.fileList = $('.filelist').find('ul');
+            this.countDom = $('.count').find('i');
+            this.noDataDom = $('.no-data');
+            this.count = 0;
+
+            this.commitBtn = $('.commit');
+            this.cancelBtn = $('.cancel');
+
+            var callback = this.swfUploadCallback(),
+                swfUploadSetting = {
+                    upload_url: '',
+                    file_types: '*.mp3;*.aac;*.m4a;*.mp4;*.wav;*.ape;*.flac;*.ogg;*.amr;*.wma',
+
+                    file_queued_handler: callback.fileQueued,
+                    file_queue_error_handler: callback.fileQueueError,
+
+                    upload_start_handler: callback.uploadStart,
+                    upload_progress_handler: callback.uploadProgress,
+                    upload_success_handler: callback.uploadSuccess,
+                    upload_error_handler: callback.uploadError,
+
+                    button_width: 118,
+                    button_height: 40,
+                    button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
+                    button_cursor: SWFUpload.CURSOR.HAND,
+                    button_placeholder: $('<div></div>').appendTo(this.uploadBtn)[0],
+
+                    flash_url: './static/flash/swfupload.swf'
+                };
+            this.swf = new SWFUpload(swfUploadSetting);
+            this._bindEvent();
+        },
+
+        swfUploadCallback: function() {
+            var self = this;
+            // 以下this都指向SWFUpload实例
+            return {
+                fileQueued: function(file) {
+                    self.updateFileList(file);
+//                    console.log(arguments);
+                },
+                uploadStart: function(file) {
+                    var url = '/' + encodeURIComponent(file.name) + '/?method=uploadfile';
+                    this.setUploadURL(url);
+                    self.commitBtn.hide();
+                    self.cancelBtn.show();
+                    var top = self.fileList.find('#' + file.id).index() * 41;
+                    self.fileList.animate({
+                        scrollTop: top
+                    });
+                },
+                uploadProgress: function(file, bytesLoaded, size) {
+                    var percent = Math.ceil((bytesLoaded / size) * 100);
+                    self.setStatus(file.id, percent + '%');
+                },
+                uploadSuccess: function(file, response) {
+                    if (response == 1) {
+                        // 上传音频失败
+                        self.setStatus(file.id, '发送失败！', true);
+                    } else {
+                        self.setStatus(file.id, '发送成功！');
+                    }
+                    self.uploadNext();
+                },
+                fileQueueError: function(file, errorCode, err_msg) {
+                    if (errorCode === SWFUpload.QUEUE_ERROR.INVALID_FILETYPE) {
+                        alert('格式不支持');
+                    } else {
+                        alert(err_msg);
+                    }
+                },
+                uploadError: function(file) {
+                    self.setStatus(file.id, '发送失败！', true);
+                    self.cancelBtn.hide();
+                    self.commitBtn.show();
+                }
+            }
+        },
+
+        _bindEvent: function() {
+            var self = this;
+            this.commitBtn.on('click', function() {
+                self.swf.startUpload();
+            });
+            this.cancelBtn.on('click', function() {
+                self.swf.cancelUpload();
+            });
+            this.fileList.on('change:count', function(e, data) {
+                self.countDom.text(data);
+                if (data === 0) {
+                    self.noDataDom.show();
+                } else {
+                    self.noDataDom.hide();
+                }
+            });
+        },
+
+        /**
+         * 更新fileList
+         */
+        updateFileList: function(file) {
+            var self = this,
+                li = $('<li id="' + file.id + '"></li>');
+            li.append('<span class="info">' + file.name + ' (' + (file.size / 1024 / 1024).toFixed(1) +'MB)</span>');
+            li.append('<span class="status"></span>');
+            $('<span class="delete btn">删除</span>').one('click', function() {
+                var stats = self.swf.getStats();
+                self.swf.cancelUpload(file.id, false);
+                li.slideUp(function() {
+                    li.remove();
+                });
+                if (stats.in_progress) {
+                    self.uploadNext();
+                }
+                self.set('count', --self.count);
+            }).appendTo(li);
+            li.appendTo(this.fileList).hide().slideDown();
+            self.set('count', ++self.count);
+        },
+        set: function(key, value) {
+            this[key] = value;
+            this.fileList.trigger('change:' + key, value);
+        },
+
+        setStatus: function(id, text, isError) {
+            var status = this.fileList.find('#' + id).find('.status');
+            if (isError) {
+                status.addClass('fail');
+            } else {
+                status.removeClass('fail');
+            }
+            status.text(text);
+        },
+
+        uploadNext: function() {
+            var stats = this.swf.getStats();
+            if (stats.files_queued > 0) {
+                this.swf.startUpload();
+            } else {
+                this.cancelBtn.hide();
+                this.commitBtn.show();
+            }
+        }
+
+    };
+    swfUpload = new SwfUpload();
+</script>
+</body>
+</html>

@@ -1,0 +1,1069 @@
+<pluginApps>
+    <pluginApp applicationType="Multimedia" applicationWeight="200" text="Baidu Ting">
+        <actions>
+            <combinedAction id="1">
+                <actions>
+                    <raAction id="5" />
+                    <hmiAction id="6" target="97" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="11">
+                <actions>
+                    <raAction id="12" />
+                    <hmiAction id="13" target="125" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="15">
+                <actions>
+                    <raAction id="16" />
+                    <hmiAction id="17" target="125" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="18">
+                <actions>
+                    <raAction id="19" />
+                    <hmiAction id="20" target="157" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="21">
+                <actions>
+                    <raAction id="22" />
+                    <hmiAction id="23" target="0" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="241">
+                <actions>
+                    <raAction id="242" />
+                    <hmiAction id="243" target="3" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="62">
+                <actions>
+                    <raAction id="63" />
+                    <hmiAction id="64" target="97" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="9">
+                <actions>
+                    <raAction id="10" />
+                    <hmiAction id="38" target="0" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="95">
+                <actions>
+                    <raAction id="98" />
+                    <hmiAction id="99" target="0" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="100">
+                <actions>
+                    <raAction id="101" />
+                    <hmiAction id="102" target="0" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="103">
+                <actions>
+                    <raAction id="104" />
+                    <hmiAction id="105" target="39" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="113">
+                <actions>
+                    <raAction id="114" />
+                    <hmiAction id="115" target="0" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="116">
+                <actions>
+                    <raAction id="117" />
+                    <hmiAction id="118" target="0" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="119">
+                <actions>
+                    <raAction id="120" />
+                    <hmiAction id="121" target="0" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="129">
+                <actions>
+                    <raAction id="130" />
+                    <hmiAction id="131" target="89" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="42">
+                <actions>
+                    <raAction id="43" />
+                    <hmiAction id="44" target="97" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="154">
+                <actions>
+                    <raAction id="155" />
+                    <hmiAction id="156" target="89" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="166">
+                <actions>
+                    <raAction id="167" />
+                    <hmiAction id="168" target="178" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="169">
+                <actions>
+                    <raAction id="170" />
+                    <hmiAction id="171" target="221" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="172">
+                <actions>
+                    <raAction id="173" />
+                    <hmiAction id="174" target="221" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="175">
+                <actions>
+                    <raAction id="176" />
+                    <hmiAction id="177" target="178" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="152">
+                <actions>
+                    <raAction id="188" />
+                    <hmiAction id="189" target="139" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="214">
+                <actions>
+                    <raAction id="215" />
+                    <hmiAction id="216" target="139" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="217">
+                <actions>
+                    <raAction id="218" />
+                    <hmiAction id="219" target="178" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="225">
+                <actions>
+                    <raAction id="226" />
+                    <hmiAction id="227" target="139" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="262">
+                <actions>
+                    <raAction id="263" />
+                    <hmiAction id="264" target="97" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="272">
+                <actions>
+                    <raAction id="273" />
+                    <hmiAction id="274" target="266" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="284">
+                <actions>
+                    <raAction id="285" />
+                    <hmiAction id="286" target="229" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="287">
+                <actions>
+                    <raAction id="288" />
+                    <hmiAction id="289" target="229" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="298">
+                <actions>
+                    <raAction id="299" />
+                </actions>
+            </combinedAction>
+            <combinedAction id="300">
+                <actions>
+                    <raAction id="301" />
+                </actions>
+            </combinedAction>
+        </actions>
+        <models>
+            <raDataModel id="2" />
+            <textIdModel id="29" textId="1" />
+            <imageIdModel id="30" imageId="55001" />
+            <textIdModel id="31" textId="1" />
+            <textIdModel id="32" textId="4" />
+            <textIdModel id="33" textId="5" />
+            <textIdModel id="34" textId="6" />
+            <textIdModel id="35" textId="7" />
+            <textIdModel id="36" textId="8" />
+            <textIdModel id="37" textId="9" />
+            <textIdModel id="51" textId="10" />
+            <raDataModel id="109" />
+            <raDataModel id="110" />
+            <raDataModel id="126" />
+            <raDataModel id="127" />
+            <raDataModel id="128" />
+            <textIdModel id="141" />
+            <raListModel id="143" />
+            <raListModel id="45" />
+            <raDataModel id="238" />
+            <textIdModel id="48" textId="22" />
+            <textIdModel id="47" modelType="Info" textId="23" />
+            <textIdModel id="40" modelType="Info" textId="24" />
+            <imageIdModel id="41" />
+            <raDataModel id="53" modelType="Time" />
+            <raImageModel id="56" />
+            <textIdModel id="57" modelType="Info" textId="25" />
+            <textIdModel id="71" textId="26" />
+            <textIdModel id="74" textId="31" />
+            <textIdModel id="75" textId="30" />
+            <textIdModel id="76" textId="35" />
+            <textIdModel id="77" textId="29" />
+            <textIdModel id="79" textId="32" />
+            <raImageModel id="87" />
+            <raDataModel id="122" />
+            <raDataModel id="151" modelType="Info" />
+            <textIdModel id="162" textId="36" />
+            <textIdModel id="163" textId="37" />
+            <textIdModel id="164" textId="38" />
+            <textIdModel id="165" textId="39" />
+            <raListModel id="179" />
+            <textIdModel id="180" textId="40" />
+            <textIdModel id="187" textId="41" />
+            <imageIdModel id="190" />
+            <imageIdModel id="191" />
+            <imageIdModel id="192" />
+            <imageIdModel id="193" />
+            <imageIdModel id="194" imageId="55017" />
+            <imageIdModel id="195" imageId="55018" />
+            <imageIdModel id="197" imageId="55019" />
+            <imageIdModel id="201" imageId="55021" />
+            <raListModel id="220" />
+            <textIdModel id="224" modelType="Richtext" textId="42" />
+            <raListModel id="228" />
+            <raDataModel id="230" />
+            <textIdModel id="81" textId="43" />
+            <raDataModel id="26" modelType="Info" />
+            <imageIdModel id="184" />
+            <raDataModel id="28" />
+            <textIdModel id="244" modelType="Info" textId="44" />
+            <raDataModel id="251" />
+            <raImageModel id="252" />
+            <raImageModel id="253" />
+            <raImageModel id="65" />
+            <raImageModel id="254" />
+            <raImageModel id="255" />
+            <raListModel id="59" />
+            <raImageModel id="66" />
+            <raImageModel id="67" />
+            <raImageModel id="68" />
+            <raImageModel id="69" />
+            <raImageModel id="199" />
+            <textIdModel id="256" textId="55" />
+            <raImageModel id="257" />
+            <raListModel id="259" />
+            <raListModel id="265" />
+            <textIdModel id="275" textId="57" />
+            <raDataModel id="223" />
+            <textIdModel id="302" textId="58" />
+            <textIdModel id="303" textId="59" />
+            <raImageModel id="304" />
+            <raImageModel id="305" />
+        </models>
+        <hmiStates>
+            <hmiState id="3" text="" textModel="31">
+                <components>
+                    <button id="4" action="1" model="32" imageModel="66">
+                        <properties>
+                            <property id="2" value="false" />
+                        </properties>
+                    </button>
+                    <button id="14" action="11" model="33" imageModel="68">
+                        <properties>
+                            <property id="2" value="false" />
+                        </properties>
+                    </button>
+                    <button id="24" action="15" model="34" imageModel="67">
+                        <properties>
+                            <property id="2" value="false" />
+                        </properties>
+                    </button>
+                    <button id="25" action="18" model="35" imageModel="69">
+                        <properties>
+                            <property id="2" value="false" />
+                        </properties>
+                    </button>
+                    <button id="258" action="272" model="256" imageModel="257">
+                        <properties>
+                            <property id="2" value="false" />
+                            <property id="3" value="false" />
+                        </properties>
+                    </button>
+                </components>
+            </hmiState>
+            <hmiState id="39" textModel="122">
+                <components>
+                    <label id="50" model="47">
+                        <properties>
+                            <property id="3" value="false" />
+                            <property id="2" value="false" />
+                            <property id="1" value="false" />
+                        </properties>
+                    </label>
+                    <label id="52" model="40">
+                        <properties>
+                            <property id="3" value="false" />
+                            <property id="2" value="false" />
+                            <property id="1" value="false" />
+                        </properties>
+                    </label>
+                    <list id="260" model="259" action="262">
+                        <properties>
+                            <property id="6" value="64, 300" />
+                            <property id="17" value="0, 0" />
+                            <property id="3" value="false" />
+                            <property id="2" value="false" />
+                            <property id="1" value="false" />
+                        </properties>
+                    </list>
+                    <separator id="261">
+                        <properties>
+                            <property id="3" value="false" />
+                        </properties>
+                    </separator>
+                    <list id="46" model="45" action="42">
+                        <properties>
+                            <property id="6" value="64, 300" />
+                            <property id="17" value="0, 0" />
+                            <property id="3" value="false" />
+                            <property id="2" value="false" />
+                            <property id="1" value="false" />
+                        </properties>
+                    </list>
+                </components>
+            </hmiState>
+            <toolbarHmiState id="97" text="" textModel="122">
+                <properties>
+                    <property id="26" value="1,0,7" />
+                </properties>
+                <components>
+                    <image id="196" model="195">
+                        <properties>
+                            <property id="20" value="-10" />
+                            <property id="21" value="-10" />
+                            <property id="9" value="700" />
+                            <property id="10" value="473" />
+                            <property id="2" value="false" />
+                        </properties>
+                    </image>
+                    <image id="200" model="199">
+                        <properties>
+                            <property id="20" value="90" />
+                            <property id="21" value="45" />
+                            <property id="9" value="250" />
+                            <property id="10" value="250" />
+                        </properties>
+                    </image>
+                    <image id="55" model="56">
+                        <properties>
+                            <property id="20" value="114" />
+                            <property id="21" value="67" />
+                            <property id="9" value="200" />
+                            <property id="10" value="200" />
+                        </properties>
+                    </image>
+                    <image id="198" model="197">
+                        <properties>
+                            <property id="20" value="" >
+                                <condition conditionModel="0" conditionType="LAYOUTBAG">
+                                    <assignments>
+                                        <assignment conditionValue="0" value="430" />
+                                        <assignment conditionValue="1" value="328" />
+                                    </assignments>
+                                </condition>
+                            </property>
+                            <property id="21" value="38" />
+                            <property id="9" value="190" />
+                            <property id="10" value="90" />
+                        </properties>
+                    </image>
+                    <image id="202" model="201">
+                        <properties>
+                            <property id="20" value="0" />
+                            <property id="21" value="346" />
+                            <property id="9" value="636" />
+                            <property id="10" value="2" />
+                        </properties>
+                    </image>
+                    <label id="58" model="57">
+                        <properties>
+                            <property id="20" value="197" />
+                            <property id="21" value="153" />
+                            <property id="9" value="100" />
+                            <property id="10" value="100" />
+                            <property id="3" value="false" />
+                        </properties>
+                    </label>
+                    <label id="54" model="53">
+                        <properties>
+                            <property id="20" value="334" />
+                            <property id="21" value="242" />
+                            <property id="9" value="700" />
+                            <property id="10" value="90" />
+                            <property id="17" value="0" />
+                            <property id="1" value="true" />
+                        </properties>
+                    </label>
+                    <label id="108" model="109">
+                        <properties>
+                            <property id="20" value="-110" />
+                            <property id="21" value="310" />
+                            <property id="9" value="700" />
+                            <property id="10" value="90" />
+                            <property id="17" value="1" />
+                        </properties>
+                    </label>
+                    <label id="111" model="110">
+                        <properties>
+                            <property id="20" value="-110" />
+                            <property id="21" value="360" />
+                            <property id="9" value="700" />
+                            <property id="10" value="90" />
+                            <property id="17" value="1" />
+                            <property id="1" value="true" />
+                        </properties>
+                    </label>
+                    <label id="72" model="40">
+                        <properties>
+                            <property id="3" value="false" />
+                            <property id="20" value="40" />
+                            <property id="21" value="15" />
+                            <property id="9" value="600" />
+                            <property id="10" value="100" />
+                        </properties>
+                    </label>
+                    <label id="70" model="26">
+                        <properties>
+                            <property id="20" value="130" />
+                            <property id="21" value="16" />
+                            <property id="9" value="700" />
+                            <property id="10" value="90" />
+                        </properties>
+                    </label>
+                    <label id="306" model="151">
+                        <properties>
+                            <property id="20" value="334" />
+                            <property id="21" value="200" />
+                            <property id="9" value="600" />
+                            <property id="10" value="50" />
+                        </properties>
+                    </label>
+                </components>
+                <toolbarComponents>
+                    <button id="107" action="103" imageModel="252" tooltipModel="75" />
+                    <button id="185" action="300" imageModel="305" tooltipModel="303" />
+                    <button id="8" action="298" imageModel="304" tooltipModel="302" />
+                    <button id="78" action="113" imageModel="65" tooltipModel="76" />
+                    <button id="82">
+                        <properties>
+                            <property id="2" value="false" />
+                            <property id="1" value="false" />
+                        </properties>
+                    </button>
+                    <button id="83">
+                        <properties>
+                            <property id="2" value="false" />
+                            <property id="1" value="false" />
+                        </properties>
+                    </button>
+                    <button id="84">
+                        <properties>
+                            <property id="2" value="false" />
+                            <property id="1" value="false" />
+                        </properties>
+                    </button>
+                    <button id="7" action="9" imageModel="253" tooltipModel="71" />
+                </toolbarComponents>
+            </toolbarHmiState>
+            <hmiState id="125" text="" textModel="122">
+                <components>
+                    <label id="86" model="47">
+                        <properties>
+                            <property id="3" value="false" />
+                            <property id="2" value="false" />
+                        </properties>
+                    </label>
+                    <label id="88" model="40">
+                        <properties>
+                            <property id="3" value="false" />
+                            <property id="2" value="false" />
+                        </properties>
+                    </label>
+                    <button id="270" action="154" model="238">
+                        <properties>
+                            <property id="3" value="false" />
+                            <property id="2" value="false" />
+                        </properties>
+                    </button>
+                    <separator id="85">
+                        <properties>
+                            <property id="3" value="true" />
+                        </properties>
+                    </separator>
+                    <list id="144" model="143" action="129">
+                        <properties>
+                            <property id="6" value="" />
+                        </properties>
+                    </list>
+                </components>
+            </hmiState>
+            <toolbarHmiState id="89" textModel="122">
+                <properties>
+                    <property id="26" value="1,0,7" />
+                </properties>
+                <components>
+                    <image id="90" model="195">
+                        <properties>
+                            <property id="20" value="-10" />
+                            <property id="21" value="-10" />
+                            <property id="9" value="700" />
+                            <property id="10" value="473" />
+                            <property id="2" value="false" />
+                        </properties>
+                    </image>
+                    <image id="91" model="199">
+                        <properties>
+                            <property id="20" value="90" />
+                            <property id="21" value="45" />
+                            <property id="9" value="250" />
+                            <property id="10" value="250" />
+                        </properties>
+                    </image>
+                    <image id="92" model="56">
+                        <properties>
+                            <property id="20" value="114" />
+                            <property id="21" value="67" />
+                            <property id="9" value="200" />
+                            <property id="10" value="200" />
+                        </properties>
+                    </image>
+                    <image id="93" model="197">
+                        <properties>
+                            <property id="20" value="" >
+                                <condition conditionModel="0" conditionType="LAYOUTBAG">
+                                    <assignments>
+                                        <assignment conditionValue="0" value="430" />
+                                        <assignment conditionValue="1" value="328" />
+                                    </assignments>
+                                </condition>
+                            </property>
+                            <property id="21" value="38" />
+                            <property id="9" value="190" />
+                            <property id="10" value="90" />
+                        </properties>
+                    </image>
+                    <image id="94" model="201">
+                        <properties>
+                            <property id="20" value="0" />
+                            <property id="21" value="346" />
+                            <property id="9" value="636" />
+                            <property id="10" value="2" />
+                        </properties>
+                    </image>
+                    <label id="112" model="57">
+                        <properties>
+                            <property id="20" value="197" />
+                            <property id="21" value="153" />
+                            <property id="9" value="100" />
+                            <property id="10" value="100" />
+                            <property id="3" value="false" />
+                        </properties>
+                    </label>
+                    <label id="123" model="53">
+                        <properties>
+                            <property id="20" value="334" />
+                            <property id="21" value="242" />
+                            <property id="9" value="700" />
+                            <property id="10" value="90" />
+                            <property id="17" value="0" />
+                            <property id="1" value="true" />
+                        </properties>
+                    </label>
+                    <label id="124" model="109">
+                        <properties>
+                            <property id="20" value="-110" />
+                            <property id="21" value="310" />
+                            <property id="9" value="700" />
+                            <property id="10" value="90" />
+                            <property id="17" value="1" />
+                        </properties>
+                    </label>
+                    <label id="153" model="110">
+                        <properties>
+                            <property id="20" value="-110" />
+                            <property id="21" value="360" />
+                            <property id="9" value="700" />
+                            <property id="10" value="90" />
+                            <property id="17" value="1" />
+                            <property id="1" value="true" />
+                        </properties>
+                    </label>
+                    <label id="203" model="40">
+                        <properties>
+                            <property id="3" value="false" />
+                            <property id="20" value="40" />
+                            <property id="21" value="15" />
+                            <property id="9" value="600" />
+                            <property id="10" value="100" />
+                        </properties>
+                    </label>
+                    <label id="204" model="151">
+                        <properties>
+                            <property id="20" value="334" />
+                            <property id="21" value="200" />
+                            <property id="9" value="600" />
+                            <property id="10" value="50" />
+                        </properties>
+                    </label>
+                </components>
+                <toolbarComponents>
+                    <button id="60" action="113" imageModel="65" tooltipModel="76" />
+                    <button id="73" action="119" imageModel="255" tooltipModel="79" />
+                    <button id="132" action="95">
+                        <properties>
+                            <property id="2" value="false" />
+                            <property id="1" value="false" />
+                        </properties>
+                    </button>
+                    <button id="133">
+                        <properties>
+                            <property id="2" value="false" />
+                            <property id="1" value="false" />
+                        </properties>
+                    </button>
+                    <button id="134">
+                        <properties>
+                            <property id="2" value="false" />
+                            <property id="1" value="false" />
+                        </properties>
+                    </button>
+                    <button id="136">
+                        <properties>
+                            <property id="2" value="false" />
+                            <property id="1" value="false" />
+                        </properties>
+                    </button>
+                    <button id="137" action="116" imageModel="254" tooltipModel="74" />
+                    <button id="235" action="9" imageModel="253" tooltipModel="71" />
+                </toolbarComponents>
+            </toolbarHmiState>
+            <toolbarHmiState id="139" textModel="122">
+                <properties>
+                    <property id="26" value="1,0,7" />
+                </properties>
+                <components>
+                    <image id="205" model="195">
+                        <properties>
+                            <property id="20" value="-10" />
+                            <property id="21" value="-10" />
+                            <property id="9" value="700" />
+                            <property id="10" value="473" />
+                            <property id="2" value="false" />
+                        </properties>
+                    </image>
+                    <image id="206" model="199">
+                        <properties>
+                            <property id="20" value="90" />
+                            <property id="21" value="45" />
+                            <property id="9" value="250" />
+                            <property id="10" value="250" />
+                        </properties>
+                    </image>
+                    <image id="207" model="56">
+                        <properties>
+                            <property id="20" value="114" />
+                            <property id="21" value="67" />
+                            <property id="9" value="200" />
+                            <property id="10" value="200" />
+                        </properties>
+                    </image>
+                    <image id="208" model="197">
+                        <properties>
+                            <property id="20" value="" >
+                                <condition conditionModel="0" conditionType="LAYOUTBAG">
+                                    <assignments>
+                                        <assignment conditionValue="0" value="430" />
+                                        <assignment conditionValue="1" value="328" />
+                                    </assignments>
+                                </condition>
+                            </property>
+                            <property id="21" value="38" />
+                            <property id="9" value="190" />
+                            <property id="10" value="90" />
+                        </properties>
+                    </image>
+                    <image id="209" model="201">
+                        <properties>
+                            <property id="20" value="0" />
+                            <property id="21" value="346" />
+                            <property id="9" value="636" />
+                            <property id="10" value="2" />
+                        </properties>
+                    </image>
+                    <label id="210" model="57">
+                        <properties>
+                            <property id="20" value="197" />
+                            <property id="21" value="153" />
+                            <property id="9" value="100" />
+                            <property id="10" value="100" />
+                            <property id="3" value="false" />
+                        </properties>
+                    </label>
+                    <label id="211" model="53">
+                        <properties>
+                            <property id="20" value="334" />
+                            <property id="21" value="242" />
+                            <property id="9" value="700" />
+                            <property id="10" value="90" />
+                            <property id="17" value="0" />
+                            <property id="1" value="true" />
+                        </properties>
+                    </label>
+                    <label id="212" model="109">
+                        <properties>
+                            <property id="20" value="-110" />
+                            <property id="21" value="310" />
+                            <property id="9" value="700" />
+                            <property id="10" value="90" />
+                            <property id="17" value="1" />
+                        </properties>
+                    </label>
+                    <label id="213" model="110">
+                        <properties>
+                            <property id="20" value="-110" />
+                            <property id="21" value="360" />
+                            <property id="9" value="700" />
+                            <property id="10" value="90" />
+                            <property id="17" value="1" />
+                            <property id="1" value="true" />
+                        </properties>
+                    </label>
+                    <label id="245" model="244">
+                        <properties>
+                            <property id="3" value="false" />
+                            <property id="20" value="40" />
+                            <property id="21" value="15" />
+                            <property id="9" value="600" />
+                            <property id="10" value="100" />
+                        </properties>
+                    </label>
+                </components>
+                <toolbarComponents>
+                    <button id="147" action="119" imageModel="255" tooltipModel="79" />
+                    <button id="236" action="95">
+                        <properties>
+                            <property id="2" value="false" />
+                            <property id="1" value="false" />
+                        </properties>
+                    </button>
+                    <button id="138">
+                        <properties>
+                            <property id="2" value="false" />
+                            <property id="1" value="false" />
+                        </properties>
+                    </button>
+                    <button id="142">
+                        <properties>
+                            <property id="2" value="false" />
+                            <property id="1" value="false" />
+                        </properties>
+                    </button>
+                    <button id="146">
+                        <properties>
+                            <property id="2" value="false" />
+                            <property id="1" value="false" />
+                        </properties>
+                    </button>
+                    <button id="148">
+                        <properties>
+                            <property id="2" value="false" />
+                            <property id="1" value="false" />
+                        </properties>
+                    </button>
+                    <button id="145" action="116" imageModel="254" tooltipModel="74" />
+                    <button id="140" action="9" imageModel="253" tooltipModel="71" />
+                </toolbarComponents>
+            </toolbarHmiState>
+            <hmiState id="157" textModel="122">
+                <components>
+                    <button id="158" action="166" model="162" />
+                    <button id="159" action="169" model="163" />
+                    <button id="160" action="172" model="164" />
+                    <button id="161" action="175" model="165" />
+                </components>
+            </hmiState>
+            <hmiState id="178" textModel="122">
+                <components>
+                    <button id="181" action="152" model="28">
+                        <properties>
+                            <property id="2" value="false" />
+                            <property id="3" value="false" />
+                        </properties>
+                    </button>
+                    <separator id="182">
+                        <properties>
+                            <property id="3" value="false" />
+                        </properties>
+                    </separator>
+                    <list id="183" model="179" action="214">
+                        <properties>
+                            <property id="6" value="" />
+                            <property id="3" value="false" />
+                        </properties>
+                    </list>
+                    <label id="186" model="187">
+                        <properties>
+                            <property id="3" value="false" />
+                            <property id="2" value="false" />
+                        </properties>
+                    </label>
+                    <label id="239" model="47">
+                        <properties>
+                            <property id="3" value="false" />
+                            <property id="2" value="false" />
+                        </properties>
+                    </label>
+                </components>
+            </hmiState>
+            <hmiState id="221" text="" textModel="122">
+                <components>
+                    <list id="222" model="220" action="217">
+                        <properties>
+                            <property id="2" value="false" />
+                        </properties>
+                    </list>
+                    <label id="80" model="187">
+                        <properties>
+                            <property id="3" value="false" />
+                            <property id="2" value="false" />
+                        </properties>
+                    </label>
+                    <label id="240" model="47">
+                        <properties>
+                            <property id="3" value="false" />
+                            <property id="2" value="false" />
+                        </properties>
+                    </label>
+                    <list id="61" model="59" action="217">
+                        <properties>
+                            <property id="3" value="false" />
+                            <property id="2" value="false" />
+                        </properties>
+                    </list>
+                </components>
+            </hmiState>
+            <hmiState id="266" textModel="275">
+                <components>
+                    <label id="269" model="47">
+                        <properties>
+                            <property id="3" value="false" />
+                            <property id="2" value="false" />
+                        </properties>
+                    </label>
+                    <label id="271" model="40">
+                        <properties>
+                            <property id="3" value="false" />
+                            <property id="2" value="false" />
+                        </properties>
+                    </label>
+                    <label id="150" model="81">
+                        <properties>
+                            <property id="3" value="false" />
+                            <property id="2" value="false" />
+                        </properties>
+                    </label>
+                    <button id="49" action="284" model="223">
+                        <properties>
+                            <property id="3" value="false" />
+                            <property id="2" value="false" />
+                        </properties>
+                    </button>
+                    <separator id="267">
+                        <properties>
+                            <property id="3" value="false" />
+                        </properties>
+                    </separator>
+                    <list id="268" model="265" action="287" />
+                </components>
+            </hmiState>
+            <toolbarHmiState id="229" textModel="275">
+                <properties>
+                    <property id="26" value="1,0,7" />
+                </properties>
+                <components>
+                    <image id="232" model="195">
+                        <properties>
+                            <property id="20" value="-10" />
+                            <property id="21" value="-10" />
+                            <property id="9" value="700" />
+                            <property id="10" value="473" />
+                            <property id="2" value="false" />
+                        </properties>
+                    </image>
+                    <image id="233" model="199">
+                        <properties>
+                            <property id="20" value="90" />
+                            <property id="21" value="45" />
+                            <property id="9" value="250" />
+                            <property id="10" value="250" />
+                        </properties>
+                    </image>
+                    <image id="234" model="56">
+                        <properties>
+                            <property id="20" value="114" />
+                            <property id="21" value="67" />
+                            <property id="9" value="200" />
+                            <property id="10" value="200" />
+                        </properties>
+                    </image>
+                    <image id="276" model="197">
+                        <properties>
+                            <property id="20" value="" >
+                                <condition conditionModel="0" conditionType="LAYOUTBAG">
+                                    <assignments>
+                                        <assignment conditionValue="0" value="430" />
+                                        <assignment conditionValue="1" value="328" />
+                                    </assignments>
+                                </condition>
+                            </property>
+                            <property id="21" value="38" />
+                            <property id="9" value="190" />
+                            <property id="10" value="90" />
+                        </properties>
+                    </image>
+                    <image id="277" model="201">
+                        <properties>
+                            <property id="20" value="0" />
+                            <property id="21" value="346" />
+                            <property id="9" value="636" />
+                            <property id="10" value="2" />
+                        </properties>
+                    </image>
+                    <label id="278" model="57">
+                        <properties>
+                            <property id="20" value="197" />
+                            <property id="21" value="153" />
+                            <property id="9" value="100" />
+                            <property id="10" value="100" />
+                            <property id="3" value="false" />
+                        </properties>
+                    </label>
+                    <label id="279" model="53">
+                        <properties>
+                            <property id="20" value="334" />
+                            <property id="21" value="242" />
+                            <property id="9" value="700" />
+                            <property id="10" value="90" />
+                            <property id="17" value="0" />
+                            <property id="1" value="true" />
+                        </properties>
+                    </label>
+                    <label id="280" model="109">
+                        <properties>
+                            <property id="20" value="-110" />
+                            <property id="21" value="310" />
+                            <property id="9" value="700" />
+                            <property id="10" value="90" />
+                            <property id="17" value="1" />
+                        </properties>
+                    </label>
+                    <label id="281" model="110">
+                        <properties>
+                            <property id="20" value="-110" />
+                            <property id="21" value="360" />
+                            <property id="9" value="700" />
+                            <property id="10" value="90" />
+                            <property id="17" value="1" />
+                            <property id="1" value="true" />
+                        </properties>
+                    </label>
+                    <label id="282" model="40">
+                        <properties>
+                            <property id="3" value="false" />
+                            <property id="20" value="40" />
+                            <property id="21" value="15" />
+                            <property id="9" value="600" />
+                            <property id="10" value="100" />
+                        </properties>
+                    </label>
+                    <label id="283" model="151">
+                        <properties>
+                            <property id="20" value="334" />
+                            <property id="21" value="200" />
+                            <property id="9" value="600" />
+                            <property id="10" value="50" />
+                        </properties>
+                    </label>
+                </components>
+                <toolbarComponents>
+                    <button id="290" action="113" imageModel="65" tooltipModel="76" />
+                    <button id="291" action="119" imageModel="255" tooltipModel="79" />
+                    <button id="292" action="95">
+                        <properties>
+                            <property id="2" value="false" />
+                            <property id="1" value="false" />
+                        </properties>
+                    </button>
+                    <button id="293">
+                        <properties>
+                            <property id="2" value="false" />
+                            <property id="1" value="false" />
+                        </properties>
+                    </button>
+                    <button id="294">
+                        <properties>
+                            <property id="2" value="false" />
+                            <property id="1" value="false" />
+                        </properties>
+                    </button>
+                    <button id="295">
+                        <properties>
+                            <property id="2" value="false" />
+                            <property id="1" value="false" />
+                        </properties>
+                    </button>
+                    <button id="296" action="116" imageModel="254" tooltipModel="74" />
+                    <button id="297" action="9" imageModel="253" tooltipModel="71" />
+                </toolbarComponents>
+            </toolbarHmiState>
+        </hmiStates>
+        <events>
+            <focusEvent id="96" target="3" />
+            <focusEvent id="106" target="39" />
+            <focusEvent id="135" target="97" />
+            <focusEvent id="149" target="125" />
+            <focusEvent id="246" target="89" />
+            <focusEvent id="247" target="139" />
+            <focusEvent id="248" target="157" />
+            <focusEvent id="249" target="178" />
+            <focusEvent id="250" target="221" />
+            <statusbarEvent id="231" textModel="230" />
+        </events>
+        <entryButton id="27" action="241" model="29" imageModel="30">
+            <properties>
+                <property id="null" value="2" />
+            </properties>
+        </entryButton>
+    </pluginApp>
+    <pluginApp applicationType="OnlineServices" applicationWeight="200" text="Baidu Ting">
+        <actions />
+        <models />
+        <hmiStates />
+        <events />
+        <entryButton id="237" action="241" model="29" imageModel="30">
+            <properties>
+                <property id="null" value="2" />
+            </properties>
+        </entryButton>
+    </pluginApp>
+</pluginApps>
