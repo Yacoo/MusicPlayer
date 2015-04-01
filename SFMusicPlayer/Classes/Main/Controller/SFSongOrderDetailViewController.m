@@ -13,6 +13,7 @@
     UIView * _bgView;
     BOOL _close;
     BOOL _stopScrolling;
+    UIView * _tapGestureView;
     UITapGestureRecognizer * _tapGesture;
 }
 @end
@@ -70,7 +71,7 @@
     
     //scrollview上方背景view
     _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAIN_W-MARGIN*2, MAIN_H/2-40)];
-    _bgView.backgroundColor = [UIColor greenColor];
+    _bgView.backgroundColor = [UIColor clearColor];
     _bgView.userInteractionEnabled = YES;
     [self.songListScroll addSubview:_bgView];
     
@@ -171,34 +172,38 @@
     [self.songListScroll addSubview:self.songListTableview];
     
     //创建点击上滑手势
+    _tapGestureView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAIN_W, MAIN_H)];
+    _tapGestureView.userInteractionEnabled = YES;
+    _tapGestureView.backgroundColor = [UIColor clearColor];
+    
     _tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
-    [_bgView addGestureRecognizer:_tapGesture];
+    [_tapGestureView addGestureRecognizer:_tapGesture];
 }
 #pragma mark -- button点击事件
 - (void)closeButtonAction:(UIButton *)button
 {
-//    if(_close == NO)
-//    {
-//        [self.songListScroll setContentOffset:CGPointMake(0, -280) animated:YES];
-//      //  self.songListScroll.contentOffset = CGPointMake(0, -280);
-//        [_bgView setHidden:YES];
-//        _close = YES;
-//        [self.songListScroll addGestureRecognizer:_tapGesture];
-//    }else{
-//        [self.songListScroll setContentOffset:CGPointMake(0, 0) animated:YES];
-//        [_bgView setHidden:NO];
-//        _close = NO;
-//        [self.songListScroll removeGestureRecognizer:_tapGesture];
-//    }
+    if(_close == NO)
+    {
+        [self.songListScroll setContentOffset:CGPointMake(0, -280) animated:YES];
+      //  self.songListScroll.contentOffset = CGPointMake(0, -280);
+        [_bgView setHidden:YES];
+        _close = YES;
+        [self.songListScroll addGestureRecognizer:_tapGesture];
+    }else{
+        [self.songListScroll setContentOffset:CGPointMake(0, 0) animated:YES];
+        [_bgView setHidden:NO];
+        _close = NO;
+        [self.songListScroll removeGestureRecognizer:_tapGesture];
+    }
 
 }
 - (void)tapGesture:(UITapGestureRecognizer *)tapGesture
 {
     [self.songListScroll setContentOffset:CGPointMake(0, 0) animated:YES];
-  //  _bgView.hidden = NO;
+    _bgView.hidden = NO;
     _close = NO;
-   //  [self.songListScroll removeGestureRecognizer:_tapGesture];
     
+    [_tapGestureView removeFromSuperview];
 }
 #pragma mark -- <UITableViewDataSource>
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -231,9 +236,6 @@
 }
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-   
-    
-   
     
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -245,17 +247,14 @@
     if(self.songListScroll.contentOffset.y < -100){
           [scrollView setContentOffset:CGPointMake(0, -280) animated:YES];
         _close = YES;
-      //  _bgView.hidden = YES;
+        _bgView.hidden = YES;
         
     }
-
 }
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
     if(self.songListScroll == scrollView){
-        [_bgView addGestureRecognizer:_tapGesture];
+        [self.view addSubview:_tapGestureView];
     }
-    
-    
 }
 @end
