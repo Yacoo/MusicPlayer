@@ -185,7 +185,7 @@
     if(_close == NO)
     {
         [self.songListScroll setContentOffset:CGPointMake(0, -280) animated:YES];
-      //  self.songListScroll.contentOffset = CGPointMake(0, -280);
+    
         [_bgView setHidden:YES];
         _close = YES;
         [self.songListScroll addGestureRecognizer:_tapGesture];
@@ -238,10 +238,7 @@
 {
     
 }
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    
-}
+
 -(void)scrollViewWillBeginDecelerating: (UIScrollView *)scrollView{
 
     if(self.songListScroll.contentOffset.y < -100){
