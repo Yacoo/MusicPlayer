@@ -39,6 +39,10 @@
 		32D4A7151AC396FE003FEE30 /* SFSongOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D4A7141AC396FE003FEE30 /* SFSongOrderViewController.m */; };
 		32D4A7181AC397A4003FEE30 /* SFRankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D4A7171AC397A4003FEE30 /* SFRankViewController.m */; };
 		32D4A71B1AC3981D003FEE30 /* SFSingerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D4A71A1AC3981D003FEE30 /* SFSingerViewController.m */; };
+		32DC344F1ACD09A20045A410 /* SFSongOrderListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC344E1ACD09A20045A410 /* SFSongOrderListModel.m */; };
+		32DC34521ACD09CA0045A410 /* SFSongModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC34511ACD09CA0045A410 /* SFSongModel.m */; };
+		32DC34561ACD32400045A410 /* UIImage+MostColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC34551ACD32400045A410 /* UIImage+MostColor.m */; };
+		32DC345C1ACD43CF0045A410 /* SFRankOrderListControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC345B1ACD43CF0045A410 /* SFRankOrderListControllerViewController.m */; };
 		33673F9C2EED1ABAD1A9D0D9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F68D9C33F1A5325F0750ED8E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +117,14 @@
 		32D4A7171AC397A4003FEE30 /* SFRankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFRankViewController.m; sourceTree = "<group>"; };
 		32D4A7191AC3981D003FEE30 /* SFSingerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFSingerViewController.h; sourceTree = "<group>"; };
 		32D4A71A1AC3981D003FEE30 /* SFSingerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFSingerViewController.m; sourceTree = "<group>"; };
+		32DC344D1ACD09A20045A410 /* SFSongOrderListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFSongOrderListModel.h; sourceTree = "<group>"; };
+		32DC344E1ACD09A20045A410 /* SFSongOrderListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFSongOrderListModel.m; sourceTree = "<group>"; };
+		32DC34501ACD09CA0045A410 /* SFSongModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFSongModel.h; sourceTree = "<group>"; };
+		32DC34511ACD09CA0045A410 /* SFSongModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFSongModel.m; sourceTree = "<group>"; };
+		32DC34541ACD32400045A410 /* UIImage+MostColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MostColor.h"; sourceTree = "<group>"; };
+		32DC34551ACD32400045A410 /* UIImage+MostColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MostColor.m"; sourceTree = "<group>"; };
+		32DC345A1ACD43CF0045A410 /* SFRankOrderListControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFRankOrderListControllerViewController.h; sourceTree = "<group>"; };
+		32DC345B1ACD43CF0045A410 /* SFRankOrderListControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFRankOrderListControllerViewController.m; sourceTree = "<group>"; };
 		43DA7C1AC4E82DD21A82BE4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F68D9C33F1A5325F0750ED8E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -179,6 +191,8 @@
 				32CC33721ACB7D6F003C36C1 /* SFSongOrderDetailViewController.m */,
 				32D4A7161AC397A4003FEE30 /* SFRankViewController.h */,
 				32D4A7171AC397A4003FEE30 /* SFRankViewController.m */,
+				32DC345A1ACD43CF0045A410 /* SFRankOrderListControllerViewController.h */,
+				32DC345B1ACD43CF0045A410 /* SFRankOrderListControllerViewController.m */,
 				32D4A7191AC3981D003FEE30 /* SFSingerViewController.h */,
 				32D4A71A1AC3981D003FEE30 /* SFSingerViewController.m */,
 				32CB43FA1AC8DFC300D12D90 /* SFPlayViewController.h */,
@@ -205,6 +219,10 @@
 				32B729FA1ACA8D3B00D0AAE1 /* SFSongItemModel.m */,
 				32B729F61ACA7FB800D0AAE1 /* SFDiscModel.h */,
 				32B729F71ACA7FB800D0AAE1 /* SFDiscModel.m */,
+				32DC344D1ACD09A20045A410 /* SFSongOrderListModel.h */,
+				32DC344E1ACD09A20045A410 /* SFSongOrderListModel.m */,
+				32DC34501ACD09CA0045A410 /* SFSongModel.h */,
+				32DC34511ACD09CA0045A410 /* SFSongModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -231,6 +249,7 @@
 		32C8C61E1ABFB4D500856030 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				32DC34531ACD32400045A410 /* Lib */,
 				32C8C62A1ABFB5BC00856030 /* YKSingleton.h */,
 				32C8C61F1ABFB4D500856030 /* AppDelegate.h */,
 				32C8C6201ABFB4D500856030 /* AppDelegate.m */,
@@ -313,6 +332,15 @@
 				32CFFD771ABD81C500FC2C47 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		32DC34531ACD32400045A410 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				32DC34541ACD32400045A410 /* UIImage+MostColor.h */,
+				32DC34551ACD32400045A410 /* UIImage+MostColor.m */,
+			);
+			path = Lib;
 			sourceTree = "<group>";
 		};
 		48EAE64781BFCE5A94D72F87 /* Frameworks */ = {
@@ -474,7 +502,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32DC345C1ACD43CF0045A410 /* SFRankOrderListControllerViewController.m in Sources */,
 				32CB43FD1AC8DFC300D12D90 /* SFPlayViewController.m in Sources */,
+				32DC34561ACD32400045A410 /* UIImage+MostColor.m in Sources */,
 				32CB44021AC9214E00D12D90 /* SFRadioViewController.m in Sources */,
 				32CACFF51AC257B700FCD4A3 /* SFSingerModel.m in Sources */,
 				32B729FB1ACA8D3B00D0AAE1 /* SFSongItemModel.m in Sources */,
@@ -491,7 +521,9 @@
 				32C8C6241ABFB4D500856030 /* AppDelegate.m in Sources */,
 				32D4A7121AC39614003FEE30 /* SFRecViewController.m in Sources */,
 				329731521AC10EB9007263CF /* SFSongOrderCell.m in Sources */,
+				32DC34521ACD09CA0045A410 /* SFSongModel.m in Sources */,
 				32B729F81ACA7FB800D0AAE1 /* SFDiscModel.m in Sources */,
+				32DC344F1ACD09A20045A410 /* SFSongOrderListModel.m in Sources */,
 				32CB44061AC9439C00D12D90 /* SFRequest.m in Sources */,
 				329731651AC14DED007263CF /* SFRankCell.m in Sources */,
 				32C8C6251ABFB4D500856030 /* main.m in Sources */,

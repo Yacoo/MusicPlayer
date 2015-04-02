@@ -28,4 +28,11 @@
 #define IPHONE6 ([UIScreen mainScreen].applicationFrame.size.width == 375)
 #define IPHONE6PLUS ([UIScreen mainScreen].applicationFrame.size.width == 414)
 #define URL_SERVER_ADDRESS_1 @"http://tingapi.ting.baidu.com/v1/restserver/ting"
+
+//判断版本
+//判断是否是是ios8
+#define iOS8 ([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0)
+#define IOS7DEVICE ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+#define IOS6DEVICE ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0)
+
 #endif

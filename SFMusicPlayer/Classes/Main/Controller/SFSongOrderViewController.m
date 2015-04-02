@@ -122,6 +122,8 @@ static NSString * const reuseIdentifier = @"songOrder";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
         SFSongOrderDetailViewController * orderDetailVC = [[SFSongOrderDetailViewController alloc] init];
+       SFSongItemModel * model = [self.songItemArray objectAtIndex:indexPath.row];
+      orderDetailVC.listid = model.listid;
         [self.navigationController pushViewController:orderDetailVC animated:YES];
 }
 @end
