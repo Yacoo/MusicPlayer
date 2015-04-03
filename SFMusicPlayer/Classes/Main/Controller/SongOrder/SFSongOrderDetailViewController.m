@@ -13,6 +13,7 @@
 #import <MJExtension.h>
 #import <UIImageView+WebCache.h>
 #import "UIImage+MostColor.h"
+#import "SFSongOrderDetailCell.h"
 
 @interface SFSongOrderDetailViewController ()
 {
@@ -57,6 +58,13 @@
     
     _stopScrolling = NO;
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    //导航条颜色
+//    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+   [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
+//    [self.navigationController.navigationBar setBackIndicatorImage:[UIImage imageNamed:@"123"]];
+   self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    self.navigationController.navigationBar.translucent = YES;
     
     //设置背景图片和文字
     [self createBgTextAndView];
@@ -117,10 +125,12 @@
     [self.songListScroll addSubview:_bgView];
     
     //标题label
-    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(MARGIN*2, 150, 200, 50)];
+    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(MARGIN*2, 200, MAIN_W-MARGIN*6, 60)];
     _titleLabel.text = @"";
     _titleLabel.textColor = [UIColor whiteColor];
     _titleLabel.backgroundColor = [UIColor clearColor];
+    _titleLabel.numberOfLines = 0;
+    _titleLabel.font = [UIFont systemFontOfSize:19.0];
     [_bgView addSubview:_titleLabel];
     
     //听歌imageview
@@ -153,8 +163,7 @@
     [self.songListScroll addSubview:tagBgView];
     tagBgView.userInteractionEnabled = YES;
     
-    //下方tableview
-    self.songListTableview = [[UITableView alloc] initWithFrame:CGRectMake(0, tagBgView.frame.origin.y+tagBgView.frame.size.height, MAIN_W-MARGIN*2, 500)];
+   
     
     //收起按钮
     UIButton * closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -206,10 +215,13 @@
     [shareButton setBackgroundImage:[UIImage imageNamed:@"bt_playlistdetails_share_press"] forState:UIControlStateSelected];
     [tagBgView addSubview:shareButton];
     
+    //下方tableview
+    self.songListTableview = [[UITableView alloc] initWithFrame:CGRectMake(0, tagBgView.frame.origin.y+tagBgView.frame.size.height, MAIN_W-MARGIN*2, 500)];
     self.songListTableview.delegate = self;
     self.songListTableview.dataSource = self;
     self.songListTableview.scrollEnabled = NO;
     self.songListTableview.backgroundColor = [UIColor whiteColor];
+    self.songListTableview.rowHeight = 64;
     [self.songListScroll addSubview:self.songListTableview];
     
     //创建点击上滑手势
@@ -288,6 +300,18 @@
         UIColor * resultColor = [UIColor colorWithRed:c1-0.2 green:c2-0.2 blue:c3-0.3 alpha:1.0];
         self.view.backgroundColor = resultColor;
     }];
+    
+    
+    //调整tableview的高度
+    CGRect tableViewRect = self.songListTableview.frame;
+    self.songListTableview.frame = CGRectMake(tableViewRect.origin.x, tableViewRect.origin.y, tableViewRect.size.width, self.songListTableview.rowHeight*_songOrderListModel.content.count);
+    
+    if(self.songListTableview.frame.origin.y+self.songListTableview.frame.size.height < MAIN_H){
+        self.songListTableview.frame = CGRectMake(tableViewRect.origin.x, tableViewRect.origin.y, tableViewRect.size.width, MAIN_H-_bgView.frame.size.height-50);
+    }
+
+    self.songListScroll.contentSize = CGSizeMake(MAIN_W-MARGIN*2, _bgView.frame.size.height+50+self.songListTableview.frame.size.height);
+    
 }
 /**
  *  动态设置label的宽高
@@ -363,7 +387,6 @@
 }
 -(void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
 {
-  //  _bgView.hidden = YES;
     _bgView.alpha = 0.0;
 }
 - (void)showAnimated
@@ -382,13 +405,15 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString  * identifier = @"cell";
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if(cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    static NSString  * identifier = @"songOrderDetailCell";
+    SFSongOrderDetailCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if(!cell){
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"SFSongOrderDetailCell" owner:self options:nil] lastObject];
     }
     SFSongModel * songModel = _songOrderListModel.content[indexPath.row];
-    cell.textLabel.text = songModel.title;
+    cell.songNameLabel.text = songModel.title;
+    cell.singerNameLabel.text = songModel.author;
+    
     return cell;
 }
 #pragma mark -- <UITableViewDelegate>
@@ -415,10 +440,8 @@
 
   //  NSLog(@"%s",__FUNCTION__);
     if(self.songListScroll.contentOffset.y < -100){
-      //  [self hiddenAnimated];
         
           [scrollView setContentOffset:CGPointMake(0, -280) animated:YES];
-     //   [UIView performSystemAnimation:(UISystemAnimation) onViews:<#(NSArray *)#> options:<#(UIViewAnimationOptions)#> animations:<#^(void)parallelAnimations#> completion:<#^(BOOL finished)completion#>]
         _close = YES;
         _bgView.hidden = YES;
         [self.view addSubview:_tapGestureView];

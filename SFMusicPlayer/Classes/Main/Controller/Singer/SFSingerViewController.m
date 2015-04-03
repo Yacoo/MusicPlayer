@@ -11,6 +11,7 @@
 #import <UIImageView+WebCache.h>
 #import "SFRequest.h"
 #import <MJExtension.h>
+#import "SFSingerListViewController.h"
 
 @interface SFSingerViewController ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
 
@@ -78,7 +79,7 @@
 
 - (void)initData
 {
-    self.singerArray = [[NSMutableArray alloc] initWithObjects:@"话语男歌手",@"话语女歌手",@"话语乐队组合",@"欧美男歌手",@"欧美女歌手",@"欧美乐队组合",@"韩国男歌手",@"韩国女歌手",@"韩国乐队组合",@"日本男歌手",@"日本女歌手",@"日本乐队组合",@"其他歌手", nil];
+    self.singerArray = [[NSMutableArray alloc] initWithObjects:@"华语男歌手",@"华语女歌手",@"华语乐队组合",@"欧美男歌手",@"欧美女歌手",@"欧美乐队组合",@"韩国男歌手",@"韩国女歌手",@"韩国乐队组合",@"日本男歌手",@"日本女歌手",@"日本乐队组合",@"其他歌手", nil];
 }
 /**
  * 绘制scrollview中的图片
@@ -196,6 +197,55 @@
 }
 
 #pragma mark -- <UITableViewDelegate>
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SFSingerListViewController * singerListVC = [[SFSingerListViewController alloc] init];
+    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+    [self setSingerListVC:singerListVC Text:cell.textLabel.text];
+    [self.navigationController pushViewController:singerListVC animated:YES];
+    cell.selected = NO;
+    
+    
+}
+#pragma mark -- 私有方法
+/**
+ * 处理歌手列表参数
+ */
+- (void)setSingerListVC:(SFSingerListViewController *)singerListVC Text:(NSString *)text
+{
+    //area
+    NSRange chinaRange = [text rangeOfString:@"华语"];
+    NSRange europeRange = [text rangeOfString:@"欧美"];
+    NSRange koreaRange = [text rangeOfString:@"韩国"];
+    NSRange japanRange = [text rangeOfString:@"日本"];
+    NSRange otherRange = [text rangeOfString:@"其他"];
+    
+    if(chinaRange.length > 0){
+        singerListVC.area = @"6";
+    }else if (europeRange.length > 0){
+        singerListVC.area = @"3";
+    }else if (koreaRange.length > 0){
+        singerListVC.area = @"7";
+    }else if (japanRange.length > 0){
+        singerListVC.area = @"60";
+    }else if(otherRange.length > 0){
+        singerListVC.area = @"5";
+    }
+    
+    //sex
+    NSRange maleRange = [text rangeOfString:@"男"];
+    NSRange femaleRange = [text rangeOfString:@"女"];
+    
+    if(maleRange.length > 0){
+        singerListVC.sex = @"1";
+    }else if (femaleRange.length > 0){
+        singerListVC.sex = @"2";
+    }else{
+        singerListVC.sex = @"3";
+    }
+    
+}
+
 #pragma mark -- <UIScrollViewDelegate>
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {

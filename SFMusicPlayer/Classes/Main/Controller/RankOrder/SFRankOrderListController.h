@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SFContentItemModel.h"
 
-@interface SFRankOrderListControllerViewController : UIViewController
+@interface SFRankOrderListController : UIViewController
 @property (nonatomic, strong)UITableView * rankListTableview;
+@property (nonatomic, strong)NSMutableArray * rankListArray;
+@property (nonatomic, strong)SFContentItemModel * contentItemModel;
 @end

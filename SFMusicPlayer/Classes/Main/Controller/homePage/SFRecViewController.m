@@ -334,6 +334,8 @@ method=baidu.ting.plaza.getRecommendAlbum&format=json&offset=0&limit=4&type=2&fr
 {
     if(indexPath.section == 0){
         SFSongOrderDetailViewController * orderDetailVC = [[SFSongOrderDetailViewController alloc] init];
+         SFSongOrderModel * model = [self.songOrderArray objectAtIndex:indexPath.row];
+        orderDetailVC.listid = model.listid;
         [self.navigationController pushViewController:orderDetailVC animated:YES];
     }
 }

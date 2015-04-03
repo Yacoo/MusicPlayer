@@ -11,6 +11,7 @@
 #import <MJExtension.h>
 #import "SFRankCell.h"
 #import "SFContentItemModel.h"
+#import "SFRankOrderListController.h"
 
 
 @interface SFRankViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
@@ -90,8 +91,9 @@ static NSString * const reuseIdentifier = @"rank";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    YKDetailViewController * detailVC = [[YKDetailViewController alloc] init];
-    //    detailVC.deal = self.deals[indexPath.item];
-    //    [self presentViewController:detailVC animated:YES completion:nil];
+    SFRankOrderListController * rankListVC = [[SFRankOrderListController alloc] init];
+    SFContentItemModel * model = [self.rankOrderArray objectAtIndex:indexPath.row];
+    rankListVC.contentItemModel = model;
+    [self.navigationController pushViewController:rankListVC animated:YES];
 }
 @end

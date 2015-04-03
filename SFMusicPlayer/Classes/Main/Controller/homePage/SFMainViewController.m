@@ -57,6 +57,12 @@
     [super viewDidLoad];
     [self setupSubviews];
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setBarTintColor:YKColor(34, 145, 231)];
+    self.navigationController.navigationBar.alpha = 0.8;
+}
 - (void)setupSubviews
 {
     [self setupScrollview];
@@ -78,13 +84,14 @@
     UIImageView * indicatorView = [[UIImageView alloc] initWithFrame:CGRectMake(MARGIN*2, 0, MAIN_W/4-MARGIN*4, 4)];
     [bgWhiteView addSubview:indicatorView];
     indicatorView.image = [UIImage imageNamed:@"bg_onlinemusic_second-class-navigation_hl"];
+    indicatorView.backgroundColor = YKColor(34, 145, 231);
+    indicatorView.alpha = 0.8;
     [_indicatorScroll addSubview:bgWhiteView];
     [self.bgBarView addSubview:_indicatorScroll];
     
 }
 - (void)setupScrollview
 {
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bg_onlinemusic_second-class-navigation_hl"] forBarMetrics:UIBarMetricsDefaultPrompt];
     self.scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 108, MAIN_W, MAIN_H-108)];
     self.scrollview.contentSize = CGSizeMake(MAIN_W*4, MAIN_H-108);
     self.scrollview.backgroundColor = YKColor(235, 240, 245);
@@ -171,8 +178,6 @@
         //点击事件不触发此方法，主动调用将最终指向的button置为蓝色。
         [self scrollViewDidEndDecelerating:scrollView];
     }
-    
-    
 }
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
