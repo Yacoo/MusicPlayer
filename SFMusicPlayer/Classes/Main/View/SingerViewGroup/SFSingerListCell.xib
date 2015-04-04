@@ -22,9 +22,9 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCb-X6-jTD">
-                        <rect key="frame" x="66" y="17" width="100" height="30"/>
+                        <rect key="frame" x="66" y="17" width="180" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="100" id="f5d-kv-Ho5"/>
+                            <constraint firstAttribute="width" constant="180" id="f5d-kv-Ho5"/>
                             <constraint firstAttribute="height" constant="30" id="fXD-ZZ-o1S"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>

@@ -25,6 +25,11 @@
     [self setupSubviews];
     [self requestHotSinger];
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+}
 /**
  * 绘制子视图
  */
@@ -164,19 +169,31 @@
 #pragma mark -- <UITableViewDataSource>
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(section == 5){
-        return 1;
-    }else{
-        return 3;
+    if(tableView == _singerTableview){
+        if(section == 5){
+            return 1;
+        }else{
+            return 3;
+        }
     }
+    return 0;
+    
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 5;
+    if(tableView == _singerTableview){
+         return 5;
+    }
+    return 0;
+   
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return MARGIN;
+    if(tableView == _singerTableview){
+       return MARGIN;
+    }
+    return 0;
+    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
@@ -185,14 +202,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString * ID = @"singer";
-    UITableViewCell *  cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if(cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+    if(tableView == _singerTableview){
+        static NSString * ID = @"singer";
+        UITableViewCell *  cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if(cell == nil){
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        cell.textLabel.text = [self.singerArray objectAtIndex:(indexPath.section)*3+indexPath.row];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        return cell;
     }
-    cell.textLabel.text = [self.singerArray objectAtIndex:(indexPath.section)*3+indexPath.row];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    return cell;
+    return nil;
     
 }
 
@@ -202,6 +222,9 @@
     SFSingerListViewController * singerListVC = [[SFSingerListViewController alloc] init];
     UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
     [self setSingerListVC:singerListVC Text:cell.textLabel.text];
+//    singerListVC.area = @"6";
+//    singerListVC.sex = @"1";
+//    singerListVC.navBarTitle = @"华语男歌手";
     [self.navigationController pushViewController:singerListVC animated:YES];
     cell.selected = NO;
     
@@ -243,6 +266,9 @@
     }else{
         singerListVC.sex = @"3";
     }
+    
+    //title
+    singerListVC.navBarTitle = text;
     
 }
 

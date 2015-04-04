@@ -12,6 +12,7 @@
 #import <MJExtension.h>
 #import "SFRankListItemCell.h"
 #import <UIImageView+WebCache.h>
+#import "SFTool.h"
 
 @interface SFRankOrderListController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -28,6 +29,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //设置导航栏
+    [SFTool setNavBarWithNavagationBar:self];
     
     //创建背景imageview
     [self createBgImageview];
@@ -159,7 +163,7 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"SFRankListItemCell" owner:self options:nil] lastObject];
     }
     SFSongModel * oneModel = [self.rankListArray objectAtIndex:indexPath.row];
-    NSString * rankStr = [NSString stringWithFormat:@"%ld",indexPath.row +1];
+    NSString * rankStr = [NSString stringWithFormat:@"%d",indexPath.row +1];
     cell.rankNumLabel.text = [self dealWithRankNumWithString:rankStr];
     [self setTextColorForLabel:cell.rankNumLabel];
     cell.songNameLabel.text = oneModel.title;

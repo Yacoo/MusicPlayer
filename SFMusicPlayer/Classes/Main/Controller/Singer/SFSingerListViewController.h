@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface SFSingerListViewController : UIViewController
+#import "SFSingerSelectViewController.h"
+@interface SFSingerListViewController : UIViewController<SingerSelectDelegate>
 @property (nonatomic, strong)NSMutableArray * singerListArray;
 @property (nonatomic, strong)UITableView * singerTableview;
 @property (nonatomic, strong)NSString * area;
 @property (nonatomic, strong)NSString * sex;
 @property (nonatomic, strong)NSString * keyword;
+@property (nonatomic, strong)NSString * navBarTitle;
+@property (nonatomic, strong)SFSingerSelectViewController * singerSelectVC;
 @end

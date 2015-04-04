@@ -14,6 +14,7 @@
 #import <UIImageView+WebCache.h>
 #import "UIImage+MostColor.h"
 #import "SFSongOrderDetailCell.h"
+#import "SFTool.h"
 
 @interface SFSongOrderDetailViewController ()
 {
@@ -60,6 +61,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     //导航条颜色
+    //设置导航栏
+    [SFTool setNavBarWithNavagationBar:self];
 //    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
    [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
 //    [self.navigationController.navigationBar setBackIndicatorImage:[UIImage imageNamed:@"123"]];

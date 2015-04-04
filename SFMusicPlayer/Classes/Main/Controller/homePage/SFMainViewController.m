@@ -55,6 +55,7 @@
 #pragma mark -- UI
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initData];
     [self setupSubviews];
 }
 - (void)viewWillAppear:(BOOL)animated
@@ -129,7 +130,13 @@
     
 }
 #pragma mark -- 初始化数据
-
+- (void)initData
+{
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                     [UIColor whiteColor],NSForegroundColorAttributeName,
+                                                                     [UIFont fontWithName:@"Times New Roman-Bold" size:25.0], NSFontAttributeName,
+                                                                     nil]];
+}
 
 - (IBAction)buttonAction:(id)sender {
     

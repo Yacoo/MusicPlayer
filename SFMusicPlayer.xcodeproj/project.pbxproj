@@ -37,10 +37,15 @@
 		32B751061ACE77F5008B1430 /* SFSingerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B750F71ACE77F5008B1430 /* SFSingerViewController.m */; };
 		32B751071ACE77F5008B1430 /* SFSongOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B750FA1ACE77F5008B1430 /* SFSongOrderDetailViewController.m */; };
 		32B751081ACE77F5008B1430 /* SFSongOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B750FC1ACE77F5008B1430 /* SFSongOrderViewController.m */; };
-		32B7510C1ACEA41A008B1430 /* SFSingerListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B7510A1ACEA41A008B1430 /* SFSingerListCell.m */; };
-		32B7510D1ACEA41A008B1430 /* SFSingerListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32B7510B1ACEA41A008B1430 /* SFSingerListCell.xib */; };
+		32B950B81ACFF6CB00EBC2B9 /* SFPlaySongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B950B71ACFF6CB00EBC2B9 /* SFPlaySongViewController.m */; };
+		32B950BB1ACFFA7400EBC2B9 /* SFSingerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B950BA1ACFFA7400EBC2B9 /* SFSingerDetailViewController.m */; };
 		32C8C6241ABFB4D500856030 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C8C6201ABFB4D500856030 /* AppDelegate.m */; };
 		32C8C6251ABFB4D500856030 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C8C6231ABFB4D500856030 /* main.m */; };
+		32C8F3CF1ACF9D28004F6E75 /* SFTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C8F3CE1ACF9D28004F6E75 /* SFTool.m */; };
+		32C8F3D41ACFA969004F6E75 /* SFSingerListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C8F3D21ACFA969004F6E75 /* SFSingerListCell.m */; };
+		32C8F3D51ACFA969004F6E75 /* SFSingerListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32C8F3D31ACFA969004F6E75 /* SFSingerListCell.xib */; };
+		32C8F3D91ACFA9FB004F6E75 /* SFSingerSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C8F3D71ACFA9FB004F6E75 /* SFSingerSelectViewController.m */; };
+		32C8F3DA1ACFA9FB004F6E75 /* SFSingerSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32C8F3D81ACFA9FB004F6E75 /* SFSingerSelectViewController.xib */; };
 		32CACFF51AC257B700FCD4A3 /* SFSingerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CACFF41AC257B700FCD4A3 /* SFSingerModel.m */; };
 		32CB44061AC9439C00D12D90 /* SFRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CB44051AC9439C00D12D90 /* SFRequest.m */; };
 		32CFFD681ABD81C500FC2C47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32CFFD661ABD81C500FC2C47 /* Main.storyboard */; };
@@ -117,14 +122,23 @@
 		32B750FA1ACE77F5008B1430 /* SFSongOrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFSongOrderDetailViewController.m; sourceTree = "<group>"; };
 		32B750FB1ACE77F5008B1430 /* SFSongOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFSongOrderViewController.h; sourceTree = "<group>"; };
 		32B750FC1ACE77F5008B1430 /* SFSongOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFSongOrderViewController.m; sourceTree = "<group>"; };
-		32B751091ACEA41A008B1430 /* SFSingerListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFSingerListCell.h; sourceTree = "<group>"; };
-		32B7510A1ACEA41A008B1430 /* SFSingerListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFSingerListCell.m; sourceTree = "<group>"; };
-		32B7510B1ACEA41A008B1430 /* SFSingerListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SFSingerListCell.xib; sourceTree = "<group>"; };
+		32B950B61ACFF6CB00EBC2B9 /* SFPlaySongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFPlaySongViewController.h; sourceTree = "<group>"; };
+		32B950B71ACFF6CB00EBC2B9 /* SFPlaySongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFPlaySongViewController.m; sourceTree = "<group>"; };
+		32B950B91ACFFA7400EBC2B9 /* SFSingerDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFSingerDetailViewController.h; sourceTree = "<group>"; };
+		32B950BA1ACFFA7400EBC2B9 /* SFSingerDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFSingerDetailViewController.m; sourceTree = "<group>"; };
 		32C8C61F1ABFB4D500856030 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		32C8C6201ABFB4D500856030 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		32C8C6231ABFB4D500856030 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32C8C62A1ABFB5BC00856030 /* YKSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKSingleton.h; sourceTree = "<group>"; };
 		32C8C62D1ABFB7CC00856030 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		32C8F3CD1ACF9D28004F6E75 /* SFTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFTool.h; sourceTree = "<group>"; };
+		32C8F3CE1ACF9D28004F6E75 /* SFTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFTool.m; sourceTree = "<group>"; };
+		32C8F3D11ACFA969004F6E75 /* SFSingerListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFSingerListCell.h; sourceTree = "<group>"; };
+		32C8F3D21ACFA969004F6E75 /* SFSingerListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFSingerListCell.m; sourceTree = "<group>"; };
+		32C8F3D31ACFA969004F6E75 /* SFSingerListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SFSingerListCell.xib; sourceTree = "<group>"; };
+		32C8F3D61ACFA9FB004F6E75 /* SFSingerSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFSingerSelectViewController.h; sourceTree = "<group>"; };
+		32C8F3D71ACFA9FB004F6E75 /* SFSingerSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFSingerSelectViewController.m; sourceTree = "<group>"; };
+		32C8F3D81ACFA9FB004F6E75 /* SFSingerSelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SFSingerSelectViewController.xib; sourceTree = "<group>"; };
 		32CACFF31AC257B700FCD4A3 /* SFSingerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFSingerModel.h; sourceTree = "<group>"; };
 		32CACFF41AC257B700FCD4A3 /* SFSingerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFSingerModel.m; sourceTree = "<group>"; };
 		32CB44041AC9439C00D12D90 /* SFRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFRequest.h; sourceTree = "<group>"; };
@@ -197,6 +211,8 @@
 				32B750EB1ACE77F5008B1430 /* SFRadioViewController.h */,
 				32B750EC1ACE77F5008B1430 /* SFRadioViewController.m */,
 				32B750ED1ACE77F5008B1430 /* SFRadioViewController.xib */,
+				32B950B61ACFF6CB00EBC2B9 /* SFPlaySongViewController.h */,
+				32B950B71ACFF6CB00EBC2B9 /* SFPlaySongViewController.m */,
 			);
 			path = Play;
 			sourceTree = "<group>";
@@ -219,6 +235,11 @@
 				32B750F51ACE77F5008B1430 /* SFSingerListViewController.m */,
 				32B750F61ACE77F5008B1430 /* SFSingerViewController.h */,
 				32B750F71ACE77F5008B1430 /* SFSingerViewController.m */,
+				32C8F3D61ACFA9FB004F6E75 /* SFSingerSelectViewController.h */,
+				32C8F3D71ACFA9FB004F6E75 /* SFSingerSelectViewController.m */,
+				32C8F3D81ACFA9FB004F6E75 /* SFSingerSelectViewController.xib */,
+				32B950B91ACFFA7400EBC2B9 /* SFSingerDetailViewController.h */,
+				32B950BA1ACFFA7400EBC2B9 /* SFSingerDetailViewController.m */,
 			);
 			path = Singer;
 			sourceTree = "<group>";
@@ -290,6 +311,7 @@
 		32C8C61D1ABFB4D500856030 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				32C8F3D01ACFA969004F6E75 /* SingerViewGroup */,
 				32B729E91ACA3FC500D0AAE1 /* SFRecItemCell.h */,
 				32B729EA1ACA3FC500D0AAE1 /* SFRecItemCell.m */,
 				32B729EB1ACA3FC500D0AAE1 /* SFRecItemCell.xib */,
@@ -308,9 +330,6 @@
 				32B750DA1ACE5EAE008B1430 /* SFRankListItemCell.h */,
 				32B750DB1ACE5EAE008B1430 /* SFRankListItemCell.m */,
 				32B750DC1ACE5EAE008B1430 /* SFRankListItemCell.xib */,
-				32B751091ACEA41A008B1430 /* SFSingerListCell.h */,
-				32B7510A1ACEA41A008B1430 /* SFSingerListCell.m */,
-				32B7510B1ACEA41A008B1430 /* SFSingerListCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -342,8 +361,20 @@
 		32C8C6221ABFB4D500856030 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				32C8F3CD1ACF9D28004F6E75 /* SFTool.h */,
+				32C8F3CE1ACF9D28004F6E75 /* SFTool.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		32C8F3D01ACFA969004F6E75 /* SingerViewGroup */ = {
+			isa = PBXGroup;
+			children = (
+				32C8F3D11ACFA969004F6E75 /* SFSingerListCell.h */,
+				32C8F3D21ACFA969004F6E75 /* SFSingerListCell.m */,
+				32C8F3D31ACFA969004F6E75 /* SFSingerListCell.xib */,
+			);
+			path = SingerViewGroup;
 			sourceTree = "<group>";
 		};
 		32CFFD501ABD81C500FC2C47 = {
@@ -514,11 +545,12 @@
 			files = (
 				32B750DE1ACE5EAE008B1430 /* SFRankListItemCell.xib in Resources */,
 				329731661AC14DED007263CF /* SFRankCell.xib in Resources */,
-				32B7510D1ACEA41A008B1430 /* SFSingerListCell.xib in Resources */,
+				32C8F3D51ACFA969004F6E75 /* SFSingerListCell.xib in Resources */,
 				32B750D91ACE23A0008B1430 /* SFSongOrderDetailCell.xib in Resources */,
 				32B729F21ACA49D800D0AAE1 /* SFHeaderView.xib in Resources */,
 				329731531AC10EB9007263CF /* SFSongOrderCell.xib in Resources */,
 				32CFFD681ABD81C500FC2C47 /* Main.storyboard in Resources */,
+				32C8F3DA1ACFA9FB004F6E75 /* SFSingerSelectViewController.xib in Resources */,
 				32CFFD6D1ABD81C500FC2C47 /* LaunchScreen.xib in Resources */,
 				32B751021ACE77F5008B1430 /* SFRadioViewController.xib in Resources */,
 				32B751001ACE77F5008B1430 /* SFPlayViewController.xib in Resources */,
@@ -574,13 +606,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32B7510C1ACEA41A008B1430 /* SFSingerListCell.m in Sources */,
 				32B751081ACE77F5008B1430 /* SFSongOrderViewController.m in Sources */,
 				32DC34561ACD32400045A410 /* UIImage+MostColor.m in Sources */,
 				32CACFF51AC257B700FCD4A3 /* SFSingerModel.m in Sources */,
 				32B729FB1ACA8D3B00D0AAE1 /* SFSongItemModel.m in Sources */,
 				32B750DD1ACE5EAE008B1430 /* SFRankListItemCell.m in Sources */,
 				32B750D81ACE23A0008B1430 /* SFSongOrderDetailCell.m in Sources */,
+				32C8F3D41ACFA969004F6E75 /* SFSingerListCell.m in Sources */,
 				32B72A001ACA94B500D0AAE1 /* SFRankItemModel.m in Sources */,
 				32B729EC1ACA3FC500D0AAE1 /* SFRecItemCell.m in Sources */,
 				32B729E81ACA30CF00D0AAE1 /* SFRandPicModel.m in Sources */,
@@ -588,20 +620,24 @@
 				32B729F51ACA726D00D0AAE1 /* SFSongOrderModel.m in Sources */,
 				32B751071ACE77F5008B1430 /* SFSongOrderDetailViewController.m in Sources */,
 				32B751061ACE77F5008B1430 /* SFSingerViewController.m in Sources */,
+				32C8F3CF1ACF9D28004F6E75 /* SFTool.m in Sources */,
 				32B72A031ACA94C600D0AAE1 /* SFContentItemModel.m in Sources */,
 				32B751051ACE77F5008B1430 /* SFSingerListViewController.m in Sources */,
 				32B750FF1ACE77F5008B1430 /* SFPlayViewController.m in Sources */,
 				32C8C6241ABFB4D500856030 /* AppDelegate.m in Sources */,
 				329731521AC10EB9007263CF /* SFSongOrderCell.m in Sources */,
+				32B950BB1ACFFA7400EBC2B9 /* SFSingerDetailViewController.m in Sources */,
 				32B751041ACE77F5008B1430 /* SFRankViewController.m in Sources */,
 				32B750FE1ACE77F5008B1430 /* SFRecViewController.m in Sources */,
 				32B751031ACE77F5008B1430 /* SFRankOrderListController.m in Sources */,
 				32DC34521ACD09CA0045A410 /* SFSongModel.m in Sources */,
 				32B750FD1ACE77F5008B1430 /* SFMainViewController.m in Sources */,
+				32C8F3D91ACFA9FB004F6E75 /* SFSingerSelectViewController.m in Sources */,
 				32B729F81ACA7FB800D0AAE1 /* SFDiscModel.m in Sources */,
 				32B751011ACE77F5008B1430 /* SFRadioViewController.m in Sources */,
 				32DC344F1ACD09A20045A410 /* SFSongOrderListModel.m in Sources */,
 				32CB44061AC9439C00D12D90 /* SFRequest.m in Sources */,
+				32B950B81ACFF6CB00EBC2B9 /* SFPlaySongViewController.m in Sources */,
 				329731651AC14DED007263CF /* SFRankCell.m in Sources */,
 				32C8C6251ABFB4D500856030 /* main.m in Sources */,
 			);
