@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SFSingerModel.h"
 
 @interface SFSingerDetailViewController : UIViewController
 @property (nonatomic, strong)UITableView * songsTableview;
 @property (nonatomic, strong)NSMutableArray * songsArray;
+@property (nonatomic, strong)SFSingerModel * singerModel;
 @end

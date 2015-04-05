@@ -29,6 +29,8 @@
     UIView * _hotBgView;
     UILabel * _hotLabel;
     
+    
+    
   
 }
 @end
@@ -52,15 +54,7 @@
 {
     [super viewDidDisappear:animated];
 }
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    _bgScrollview = nil;
-    _bgView = nil;
-    _hotBgView = nil;
-  //  _singerSelectVC = nil;
-    _hotLabel = nil;
-}
+
 - (void)setupSubviews
 {
     
@@ -132,12 +126,27 @@
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:orderButton];
     self.navigationItem.rightBarButtonItem = rightItem;
     
-    [SFTool setNavBarWithNavagationBar:self];
+  //  [SFTool setNavBarWithNavagationBar:self];
+    //自定义返回按钮
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = CGRectMake(0, 0, 20, 20);
+    [backButton setBackgroundImage:[UIImage imageNamed:@"bt_playlistdetails_return_normal"] forState:UIControlStateNormal];
+    [backButton setBackgroundImage:[UIImage imageNamed:@"bt_playlistdetails_return_press"] forState:UIControlStateSelected];
+    [backButton setTag:YES];
+    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    self.navigationItem.leftBarButtonItem = leftItem;
     
     self.singerListArray = [[NSMutableArray alloc] init];
     _order = @"1";
     _limit = @"50";
     _keyword = @"热门";
+}
+- (void)back
+{
+    [self.navigationController popViewControllerAnimated:YES];
+   // _bgScrollview = nil;
 }
 #pragma mark -- 自定义button点击事件
 - (void)backAction:(UIButton *)button
@@ -146,38 +155,26 @@
 }
 - (void)selectFirstCharactorAction:(UIButton *)button
 {
-    SFSingerSelectViewController * singerSelectVC = [[SFSingerSelectViewController alloc] init];
-    singerSelectVC.view.frame = CGRectMake(0, 0, MAIN_W, MAIN_H);
-    
-    singerSelectVC.selectDelegate = self;
-    //给选择页面添加手势
-    UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:singerSelectVC.view action:@selector(removeFromSuperview)];
-    [singerSelectVC.view addGestureRecognizer:tapGesture];
-    singerSelectVC.view.tag = 120;
     AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     UIWindow * keyWindow = delegate.window;
-    [keyWindow addSubview:singerSelectVC.view];
-    [self addChildViewController:singerSelectVC];
+    [keyWindow addSubview:_singerSelectVC.view];
+  //  [self addChildViewController:_singerSelectVC];
     
 }
 - (void)selectSinger
 {
-    UIView * view = [self.view viewWithTag:100];
-    [view removeFromSuperview];
+      [_singerSelectVC.view removeFromSuperview];
 }
 #pragma mark -- 选择首字母代理事件
 - (void)selectSingerWithClickedButton:(UIButton *)button
 {
-    UIView * view = [self.view viewWithTag:120];
-    //    [view removeFromSuperview];
     NSString * title = button.titleLabel.text;
-    [view removeFromSuperview];
+    [_singerSelectVC.view removeFromSuperview];
     _keyword = title;
     [self requestSingerList];
-    
-    YKLog(@"title = %@",title);
 }
 #pragma mark -- 网络请求
+
 - (void)requestSingerList
 {
     NSString * string = [NSString stringWithFormat:@"%@?method=%@&format=json&order=%@&limit=%@&offset=0&area=%@&sex=%@&abc=%@&from=ios&version=5.2.1&from=ios&channel=appstore",URL_SERVER_ADDRESS_1,@"baidu.ting.artist.getList",_order,_limit,_area,_sex,_keyword];
@@ -206,10 +203,9 @@
 }
 - (void)alert
 {
-   
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有符合条件的歌手" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        alert.delegate = self;
-        [alert show];
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有符合条件的歌手" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    alert.delegate = self;
+    [alert show];
 }
 /**
  *  处理请求回来的数据
@@ -218,8 +214,6 @@
 {
     YKLog(@"array = %@",array);
     //设置tableview数据
-  
-    
     [self.singerListArray removeAllObjects];
     for(NSDictionary * dic in array){
         SFSingerModel * oneModel = [SFSingerModel objectWithKeyValues:dic];
@@ -262,24 +256,47 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SFSingerDetailViewController * singerDetailVC = [[SFSingerDetailViewController alloc] init];
+    SFSingerModel * singerModel = [self.singerListArray objectAtIndex:indexPath.row];
+    singerDetailVC.singerModel = singerModel;
     [self.navigationController pushViewController:singerDetailVC animated:YES];
+    
     UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.selected = NO;
 }
 #pragma mark -- <UIScrollViewDelegate>
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if(scrollView == _bgScrollview){
-        UIView * superView = _hotBgView.superview;
-        if(scrollView.contentOffset.y >= -49 && superView != self.view){
-            [_hotBgView removeFromSuperview];
-            _hotBgView.frame = CGRectMake(MARGIN*3, 64, MAIN_W-MARGIN*6, 50);
-            [self.view addSubview:_hotBgView];
-        }else if(scrollView.contentOffset.y < -49 && superView == self.view){
-            [_hotBgView removeFromSuperview];
-            _hotBgView.frame = CGRectMake(MARGIN*2, 0, MAIN_W-MARGIN*6, 50);
-            [_bgView addSubview:_hotBgView];
+    if(_bgScrollview != nil && scrollView == _bgScrollview){
+        if(_hotBgView != nil && _bgView != nil){
+            UIView * superView = _hotBgView.superview;
+            if(scrollView.contentOffset.y >= -49 && superView != self.view){
+                
+                [_hotBgView removeFromSuperview];
+                _hotBgView.frame = CGRectMake(MARGIN*3, 64, MAIN_W-MARGIN*6, 50);
+                [self.view addSubview:_hotBgView];
+                
+            }else if(scrollView.contentOffset.y < -49 && superView == self.view){
+                
+                [_hotBgView removeFromSuperview];
+                _hotBgView.frame = CGRectMake(MARGIN*2, 0, MAIN_W-MARGIN*6, 50);
+                [_bgView addSubview:_hotBgView];
+            }
         }
+       
     }
+}
+- (void)dealloc
+{
+//    _singerTableview = nil;
+//    _bgScrollview = nil;
+//    _bgView = nil;
+//    _hotBgView = nil;
+//    //  _singerSelectVC = nil;
+//    _hotLabel = nil;
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
 }
 @end

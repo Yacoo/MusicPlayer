@@ -13,7 +13,7 @@
 #import <UIImageView+WebCache.h>
 #import "SFSongOrderDetailCell.h"
 
-@interface SFSingerDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface SFSingerDetailViewController ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
 {
     UIScrollView * _bgScrollview;
     UIImageView * _bgImageview;
@@ -24,6 +24,14 @@
     NSString * _artistid;
     NSString * _limits;
     NSString * _order;
+    
+    UIButton * _songButton;
+    UIButton * _albumButton;
+    
+    UILabel * _nameLabel;
+    UILabel * _birthLabel;
+    UILabel * _areaLabel;
+    
 }
 @end
 
@@ -32,36 +40,87 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+     self.automaticallyAdjustsScrollViewInsets = NO;
+    
     [self createSubviews];
     [self initData];
+    [self requestSingerInfo];
     [self requestSongList];
     
    // self.navigationController.navigationBar.barTintColor = [UIColor clearColor];
-   // self.navigationController.navigationBar.hidden = YES;
+ //   self.navigationController.navigationBar.hidden = YES;
+ //   [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"lock_screen_translucent"] forBarMetrics:UIBarMetricsDefault];
+  //  self.navigationController.navigationBar.backIndicatorImage = [UIImage imageNamed:@"lock_screen_translucent"];
+  //  [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"lock_screen_translucent"] forBarPosition:UIBarPositionTop barMetrics:UIBarMetricsDefault];
+  //  [self createNavBar];
 }
-
+- (void)createNavBar
+{
+    UINavigationBar * navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, MAIN_W, 64)];
+    // img_scenarioplay_shadow_2
+   // [navigationBar setBackgroundImage:[UIImage imageNamed:@"bt_playpage_mask@2x"] forBarMetrics:UIBarMetricsDefault];
+    navigationBar.backIndicatorTransitionMaskImage = [UIImage imageNamed:@"bt_playpage_mask"];
+   // [navigationBar setBarTintColor:[UIColor clearColor]];
+   // navigationBar.translucent = YES;
+    UINavigationItem * item = [[UINavigationItem alloc] init];
+  //  [item setBackgroundImage:[UIImage imageNamed:<#(NSString *)#>] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    UIButton * backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backButton setBackgroundImage:[UIImage imageNamed:@"bt_playlistdetails_return_normal"] forState:UIControlStateNormal];
+    [backButton setBackgroundImage:[UIImage imageNamed:@"bt_playlistdetails_return_press"] forState:UIControlStateHighlighted];
+    UIBarButtonItem * leftBarItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    item.leftBarButtonItem = leftBarItem;
+    
+    [item setLeftBarButtonItem:leftBarItem];
+    [navigationBar pushNavigationItem:item animated:YES];
+    [self.view addSubview:navigationBar];
+    
+}
 - (void)createSubviews
 {
     //背景scrollview
     _bgScrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, MAIN_W, MAIN_H)];
     _bgScrollview.contentSize = CGSizeMake(MAIN_W, MAIN_H*2);
     [self.view addSubview:_bgScrollview];
+    _bgScrollview.delegate = self;
     _bgScrollview.backgroundColor = [UIColor greenColor];
     
     //背景imageview
-    _bgImageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, MAIN_W, 250)];
-    _bgImageview.backgroundColor = [UIColor redColor];
+    _bgImageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, MAIN_W, 360)];
+   // _bgImageview.backgroundColor = [UIColor redColor];
     [_bgScrollview addSubview:_bgImageview];
     
     //上层scrollview
     _uperScrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, MAIN_W, MAIN_H)];
     _uperScrollview.contentSize = CGSizeMake(MAIN_W, MAIN_H*2);
+    _uperScrollview.delegate = self;
     [self.view addSubview:_uperScrollview];
     
     //上部分的标签底图
-    UIView * labelBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAIN_W, 200)];
+    UIView * labelBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAIN_W, 240)];
     labelBgView.backgroundColor = [UIColor clearColor];
     [_uperScrollview addSubview:labelBgView];
+    
+    //上部标签信息
+    //姓名标签
+    _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(MARGIN*2, 160, MAIN_W-MARGIN*4, 30)];
+    _nameLabel.text = @"李健";
+    _nameLabel.textColor = [UIColor whiteColor];
+    [labelBgView addSubview:_nameLabel];
+    
+    //生日标签
+    _birthLabel = [[UILabel alloc] initWithFrame:CGRectMake(MARGIN*2, _nameLabel.frame.origin.y+_nameLabel.frame.size.height, MAIN_W-MARGIN*4, 30)];
+    _birthLabel.text = @"生日：";
+    _birthLabel.textColor = [UIColor whiteColor];
+    [labelBgView addSubview:_birthLabel];
+    
+    //姓名标签
+    _areaLabel = [[UILabel alloc] initWithFrame:CGRectMake(MARGIN*2, _birthLabel.frame.origin.y+_birthLabel.frame.size.height, MAIN_W-MARGIN*4, 30)];
+    _areaLabel.text = @"地区：中国";
+    _areaLabel.textColor = [UIColor whiteColor];
+    [labelBgView addSubview:_areaLabel];
+    
+    
+    
     
     //下方背景色底图
     UIView * bgColorView = [[UIView alloc] initWithFrame:CGRectMake(0, labelBgView.frame.size.height, MAIN_W, MAIN_H)];
@@ -82,24 +141,45 @@
     [tableviewBgView addSubview:selectionView];
     
     //选择按钮
-    UIButton * songButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    songButton.frame =  CGRectMake(0,0, 80, 40);
-    songButton.center = CGPointMake(selectionView.frame.size.width/4, selectionView.frame.size.height/2);
-    [songButton setTitle:@"单曲" forState:UIControlStateNormal];
-    [songButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    songButton.backgroundColor = [UIColor redColor];
-    [selectionView addSubview:songButton];
+    //单曲按钮
+    _songButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _songButton.frame =  CGRectMake(0,0,(MAIN_W-MARGIN*6)/2, 40);
+    _songButton.center = CGPointMake(selectionView.frame.size.width/4, selectionView.frame.size.height/2);
+    [_songButton setTitle:@"单曲" forState:UIControlStateNormal];
+    [_songButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    _songButton.backgroundColor = YKColor(230, 230, 230);
+    _songButton.layer.cornerRadius = 4.0;
+    selectionView.layer.borderColor = [UIColor grayColor].CGColor;
+    [_songButton addTarget:self action:@selector(didClickSongButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [selectionView addSubview:_songButton];
     
-    UIButton * albumButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    albumButton.frame = CGRectMake(selectionView.frame.size.width/2, 0, 80, 40);
-    albumButton.center = CGPointMake(selectionView.frame.size.width/4*3, selectionView.frame.size.height/2);
-    [albumButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    [albumButton setTitle:@"专辑" forState:UIControlStateNormal];
-    [selectionView addSubview:albumButton];
+    //修饰左半边圆角的view
+    UIView * leftView = [[UIView alloc] initWithFrame:CGRectMake(_songButton.frame.size.width-5, 0, 5, 40)];
+    [_songButton addSubview:leftView];
+    leftView.tag = 11;
+    leftView.backgroundColor = YKColor(230, 230, 230);
+    
+    //专辑按钮
+    _albumButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _albumButton.frame = CGRectMake(selectionView.frame.size.width/2, 0, (MAIN_W-MARGIN*6)/2, 40);
+    _albumButton.center = CGPointMake(selectionView.frame.size.width/4*3, selectionView.frame.size.height/2);
+    _albumButton.backgroundColor = [UIColor whiteColor];
+    _albumButton.layer.cornerRadius = 4.0;
+    selectionView.layer.borderColor = [UIColor grayColor].CGColor;
+    [_albumButton addTarget:self action:@selector(didClickAlbumButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [_albumButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [_albumButton setTitle:@"专辑" forState:UIControlStateNormal];
+    [selectionView addSubview:_albumButton];
+    
+    //修饰右半边圆角的view
+    UIView * rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 40)];
+    [_albumButton addSubview:rightView];
+    rightView.tag = 12;
+    rightView.backgroundColor = [UIColor whiteColor];
                          
     //播放热门按钮
     UIButton * hotSongButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    hotSongButton.frame = CGRectMake(MARGIN*2, selectionView.frame.origin.y+selectionView.frame.size.height+30, 120, 40);
+    hotSongButton.frame = CGRectMake(MARGIN*2, selectionView.frame.origin.y+selectionView.frame.size.height+10, 120, 40);
     [hotSongButton setImage:[UIImage imageNamed:@"bt_singerdetails_play_normal"] forState:UIControlStateNormal];
   //  [hotSongButton setBackgroundImage:[UIImage imageNamed:@"bt_singerdetails_play_normal"] forState:UIControlStateNormal];
     [hotSongButton setImage:[UIImage imageNamed:@"bt_singerdetails_play_press"] forState:UIControlStateHighlighted];
@@ -115,7 +195,8 @@
     
     //收藏按钮
     UIButton * collectionButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    collectionButton.frame = CGRectMake(hotSongButton.frame.origin.x+hotSongButton.frame.size.width+100, hotSongButton.frame.origin.y, 20, 20);
+    collectionButton.frame = CGRectMake(hotSongButton.frame.origin.x+hotSongButton.frame.size.width+130, hotSongButton.frame.origin.y, 25, 25);
+    collectionButton.center = CGPointMake(collectionButton.center.x, hotSongButton.center.y);
     [collectionButton setBackgroundImage:[UIImage imageNamed:@"bt_playlist_collection_normal"] forState:UIControlStateNormal];
     [collectionButton setBackgroundImage:[UIImage imageNamed:@"bt_playlist_collection_press"] forState:UIControlStateSelected];
     [tableviewBgView addSubview:collectionButton];
@@ -123,13 +204,14 @@
     
     //下载按钮
     UIButton * downloadButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    downloadButton.frame = CGRectMake(collectionButton.frame.origin.x+collectionButton.frame.size.width+30, hotSongButton.frame.origin.y, 20, 20);
+    downloadButton.frame = CGRectMake(0, hotSongButton.frame.origin.y, 25, 25);
+    downloadButton.center = CGPointMake(collectionButton.center.x+40, collectionButton.center.y);
     [downloadButton setBackgroundImage:[UIImage imageNamed:@"bt_playlist_download_normal"] forState:UIControlStateNormal];
     [downloadButton setBackgroundImage:[UIImage imageNamed:@"bt_playlist_download_press"] forState:UIControlStateSelected];
     [tableviewBgView addSubview:downloadButton];
     
     //下方分割线
-    UIView * separatorLine = [[UIView alloc] initWithFrame:CGRectMake(MARGIN, 150, MAIN_W-MARGIN*3, 1)];
+    UIView * separatorLine = [[UIView alloc] initWithFrame:CGRectMake(MARGIN, 115, MAIN_W-MARGIN*3, 1)];
     separatorLine.backgroundColor = [UIColor lightGrayColor];
     [tableviewBgView addSubview:separatorLine];
     
@@ -142,6 +224,30 @@
     [tableviewBgView addSubview:self.songsTableview];
     
 }
+#pragma mark -- 自定义button点击事件
+- (void)didClickSongButtonAction:(UIButton *)button
+{
+    //点击单曲按钮两边按钮交换颜色
+    UIView * leftView = [button viewWithTag:11];
+    UIView * rightView = [_albumButton viewWithTag:12];
+    button.backgroundColor = YKColor(230, 230, 230);
+    leftView.backgroundColor = YKColor(230, 230, 230);
+    
+    _albumButton.backgroundColor = [UIColor whiteColor];
+    rightView.backgroundColor = [UIColor whiteColor];
+    
+}
+- (void)didClickAlbumButtonAction:(UIButton *)button
+{
+    //点击单曲按钮两边按钮交换颜色
+    UIView * leftView = [_songButton viewWithTag:11];
+    UIView * rightView = [button viewWithTag:12];
+    button.backgroundColor = YKColor(230, 230, 230);
+    rightView.backgroundColor = YKColor(230, 230, 230);
+    
+    _songButton.backgroundColor = [UIColor whiteColor];
+    leftView.backgroundColor = [UIColor whiteColor];
+}
 #pragma mark -- 初始化数据
 - (void)initData
 {
@@ -152,6 +258,24 @@
     _order = @"2";
 }
 #pragma mark -- 请求数据
+- (void)requestSingerInfo
+{
+    /*
+     method=baidu.ting.artist.getinfo&format=json&tinguid=45561&artistid=%28null%29&from=ios&version=5.2.1&from=ios&channel=appstore
+     */
+    NSString * string = [NSString stringWithFormat:@"%@?method=%@&format=json&tinguid=%@&artistid=%@&from=ios&version=5.2.1&from=ios&channel=appstore",URL_SERVER_ADDRESS_1,@"baidu.ting.artist.getinfo",_singerModel.ting_uid,_singerModel.artist_id];
+    
+    NSString * urlString = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    YKLog(@"%@",urlString);
+    SFRequest * request = [[SFRequest alloc] init];
+    [request request:urlString params:nil success:^(id json) {
+        
+        [self setSingerInfoWithJson:json];
+        
+    } failure:^(NSError *error) {
+        YKLog(@"error = %@",error);
+    }];
+}
 - (void)requestSongList
 {
     /*
@@ -170,6 +294,23 @@
     }];
 }
 #pragma mark -- 处理返回的数据
+- (void)setSingerInfoWithJson:(NSDictionary *)json
+{
+    //姓名
+    NSString * name = [json objectForKey:@"name"];
+    _nameLabel.text = name;
+    //生日+星座
+    NSString * birth = [json objectForKey:@"birth"];
+    NSString * constellation = [json objectForKey:@"constellation"];
+    _birthLabel.text = [NSString stringWithFormat:@"生日：%@（%@）",birth,constellation];
+    
+    //地区
+    NSString * area = [json objectForKey:@"country"];
+    _areaLabel.text = [NSString stringWithFormat:@"地区：%@",area];
+    
+    //设置背景图片
+    [_bgImageview sd_setImageWithURL:[NSURL URLWithString:_singerModel.avatar_big] placeholderImage:[UIImage imageNamed:@"img_default_singer354"]];
+}
 - (void)setSongsListWithArray:(NSArray *)array
 {
     [self.songsArray removeAllObjects];
@@ -213,6 +354,68 @@
     
     
 }
+#pragma mark -- <UIScrollViewDelegate>
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    YKLog(@"y = %f",_uperScrollview.contentOffset.y);
+    if(_uperScrollview.contentOffset.y <= -100){
+      //  [scrollView setContentOffset:scrollView.contentOffset animated:NO];
+     //   scrollView.userInteractionEnabled = NO;
+        
+     //   [_uperScrollview removeFromSuperview];
+        if(_uperScrollview.gestureRecognizers.count != 0){
+            UIPanGestureRecognizer * gesture =  [_uperScrollview.gestureRecognizers lastObject];
+            YKLog(@"gesture = %@",gesture);
+            _uperScrollview.contentOffset = CGPointMake(0, -100);
+            [_bgScrollview addSubview:_uperScrollview];
+            _uperScrollview.contentOffset = CGPointMake(0, -100);
+            _uperScrollview.scrollEnabled = NO;
+            
+            //   _uperScrollview.contentOffset = scrollView.contentOffset;
+            //   _uperScrollview.contentOffset = point;
+            
+            
+            [_bgScrollview addGestureRecognizer:gesture];
+            
+        }else
+            return;
+        
+        
+        
+    }
+    
+    NSLog(@"%s",__FUNCTION__);
+}
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+{
+    NSLog(@"%s",__FUNCTION__);
+}
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    NSLog(@"%s",__FUNCTION__);
+}
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    NSLog(@"%s",__FUNCTION__);
+}
 
 
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+     NSLog(@"%s",__FUNCTION__);
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+     NSLog(@"%s",__FUNCTION__);
+}
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+{
+     NSLog(@"%s",__FUNCTION__);
+}
+
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
+{
+     NSLog(@"%s",__FUNCTION__);
+}
 @end
