@@ -32,6 +32,11 @@
     UILabel * _birthLabel;
     UILabel * _areaLabel;
     
+    UINavigationBar * _navigationBar;
+    UIPanGestureRecognizer * _panGesture;
+    
+    BOOL  _isDragging;
+    
 }
 @end
 
@@ -47,33 +52,55 @@
     [self requestSingerInfo];
     [self requestSongList];
     
-   // self.navigationController.navigationBar.barTintColor = [UIColor clearColor];
- //   self.navigationController.navigationBar.hidden = YES;
- //   [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"lock_screen_translucent"] forBarMetrics:UIBarMetricsDefault];
-  //  self.navigationController.navigationBar.backIndicatorImage = [UIImage imageNamed:@"lock_screen_translucent"];
-  //  [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"lock_screen_translucent"] forBarPosition:UIBarPositionTop barMetrics:UIBarMetricsDefault];
-  //  [self createNavBar];
+    //设置系统导航栏
+    [self setDefaultNavBar];
+  
+    [self createNavBar];
+    _isDragging = YES;
+}
+- (void)setDefaultNavBar
+{
+     self.navigationController.navigationBar.hidden = YES;
+    UIButton * backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = CGRectMake(0, 0, 20, 20);
+    [backButton setBackgroundImage:[UIImage imageNamed:@"bt_playlistdetails_return_normal"] forState:UIControlStateNormal];
+    [backButton setBackgroundImage:[UIImage imageNamed:@"bt_playlistdetails_return_press"] forState:UIControlStateHighlighted];
+    [backButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem * leftBarItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    
+    self.navigationItem.leftBarButtonItem = leftBarItem;
 }
 - (void)createNavBar
 {
-    UINavigationBar * navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, MAIN_W, 64)];
-    // img_scenarioplay_shadow_2
-   // [navigationBar setBackgroundImage:[UIImage imageNamed:@"bt_playpage_mask@2x"] forBarMetrics:UIBarMetricsDefault];
-    navigationBar.backIndicatorTransitionMaskImage = [UIImage imageNamed:@"bt_playpage_mask"];
-   // [navigationBar setBarTintColor:[UIColor clearColor]];
-   // navigationBar.translucent = YES;
+    _navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, MAIN_W, 64)];
+    [_navigationBar setBackgroundImage:[UIImage imageNamed:@"bt_playpage_mask"] forBarMetrics:UIBarMetricsDefault];
+
+    _navigationBar.shadowImage = [[UIImage alloc] init];
     UINavigationItem * item = [[UINavigationItem alloc] init];
-  //  [item setBackgroundImage:[UIImage imageNamed:<#(NSString *)#>] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+
     UIButton * backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = CGRectMake(0, 0, 20, 20);
     [backButton setBackgroundImage:[UIImage imageNamed:@"bt_playlistdetails_return_normal"] forState:UIControlStateNormal];
     [backButton setBackgroundImage:[UIImage imageNamed:@"bt_playlistdetails_return_press"] forState:UIControlStateHighlighted];
+    [backButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem * leftBarItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     item.leftBarButtonItem = leftBarItem;
     
     [item setLeftBarButtonItem:leftBarItem];
-    [navigationBar pushNavigationItem:item animated:YES];
-    [self.view addSubview:navigationBar];
+    [_navigationBar pushNavigationItem:item animated:YES];
+    [self.view addSubview:_navigationBar];
     
+}
+- (void)addPanGesture
+{
+  //  UIPanGestureRecognizer * panGestuer = [_uperScrollview.gestureRecognizers lastObject];
+
+    
+}
+
+- (void)backButtonAction:(UIButton *)button
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)createSubviews
 {
@@ -86,8 +113,7 @@
     
     //背景imageview
     _bgImageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, MAIN_W, 360)];
-   // _bgImageview.backgroundColor = [UIColor redColor];
-    [_bgScrollview addSubview:_bgImageview];
+    [self.view addSubview:_bgImageview];
     
     //上层scrollview
     _uperScrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, MAIN_W, MAIN_H)];
@@ -100,27 +126,32 @@
     labelBgView.backgroundColor = [UIColor clearColor];
     [_uperScrollview addSubview:labelBgView];
     
+    //标签地图背景图
+    UIImageView * shadowBgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, labelBgView.frame.size.height-64, MAIN_W, 64)];
+    shadowBgView.image = [UIImage imageNamed:@"img_scenarioplay_shadow_around"];
+    [labelBgView addSubview:shadowBgView];
+    
     //上部标签信息
     //姓名标签
-    _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(MARGIN*2, 160, MAIN_W-MARGIN*4, 30)];
+    _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(MARGIN*2, 0, MAIN_W-MARGIN*4, 25)];
     _nameLabel.text = @"李健";
+    _nameLabel.font = [UIFont systemFontOfSize:20.0];
     _nameLabel.textColor = [UIColor whiteColor];
-    [labelBgView addSubview:_nameLabel];
+    [shadowBgView addSubview:_nameLabel];
     
     //生日标签
-    _birthLabel = [[UILabel alloc] initWithFrame:CGRectMake(MARGIN*2, _nameLabel.frame.origin.y+_nameLabel.frame.size.height, MAIN_W-MARGIN*4, 30)];
+    _birthLabel = [[UILabel alloc] initWithFrame:CGRectMake(MARGIN*2, _nameLabel.frame.origin.y+_nameLabel.frame.size.height, MAIN_W-MARGIN*4, 20)];
     _birthLabel.text = @"生日：";
+    _birthLabel.font = [UIFont systemFontOfSize:14.0];
     _birthLabel.textColor = [UIColor whiteColor];
-    [labelBgView addSubview:_birthLabel];
+    [shadowBgView addSubview:_birthLabel];
     
     //姓名标签
-    _areaLabel = [[UILabel alloc] initWithFrame:CGRectMake(MARGIN*2, _birthLabel.frame.origin.y+_birthLabel.frame.size.height, MAIN_W-MARGIN*4, 30)];
+    _areaLabel = [[UILabel alloc] initWithFrame:CGRectMake(MARGIN*2, _birthLabel.frame.origin.y+_birthLabel.frame.size.height, MAIN_W-MARGIN*4, 20)];
+    _areaLabel.font = [UIFont systemFontOfSize:14.0];
     _areaLabel.text = @"地区：中国";
     _areaLabel.textColor = [UIColor whiteColor];
-    [labelBgView addSubview:_areaLabel];
-    
-    
-    
+    [shadowBgView addSubview:_areaLabel];
     
     //下方背景色底图
     UIView * bgColorView = [[UIView alloc] initWithFrame:CGRectMake(0, labelBgView.frame.size.height, MAIN_W, MAIN_H)];
@@ -252,7 +283,6 @@
 - (void)initData
 {
     self.songsArray = [[NSMutableArray alloc] init];
-    
     _tinguid = @"1383";
     _limits = @"50";
     _order = @"2";
@@ -310,6 +340,9 @@
     
     //设置背景图片
     [_bgImageview sd_setImageWithURL:[NSURL URLWithString:_singerModel.avatar_big] placeholderImage:[UIImage imageNamed:@"img_default_singer354"]];
+    
+    //设置导航栏title
+    self.title = name;
 }
 - (void)setSongsListWithArray:(NSArray *)array
 {
@@ -358,33 +391,60 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     YKLog(@"y = %f",_uperScrollview.contentOffset.y);
-    if(_uperScrollview.contentOffset.y <= -100){
-      //  [scrollView setContentOffset:scrollView.contentOffset animated:NO];
-     //   scrollView.userInteractionEnabled = NO;
-        
-     //   [_uperScrollview removeFromSuperview];
-        if(_uperScrollview.gestureRecognizers.count != 0){
-            UIPanGestureRecognizer * gesture =  [_uperScrollview.gestureRecognizers lastObject];
-            YKLog(@"gesture = %@",gesture);
-            _uperScrollview.contentOffset = CGPointMake(0, -100);
-            [_bgScrollview addSubview:_uperScrollview];
-            _uperScrollview.contentOffset = CGPointMake(0, -100);
-            _uperScrollview.scrollEnabled = NO;
-            
-            //   _uperScrollview.contentOffset = scrollView.contentOffset;
-            //   _uperScrollview.contentOffset = point;
-            
-            
-            [_bgScrollview addGestureRecognizer:gesture];
-            
-        }else
-            return;
-        
-        
-        
+//    if(_uperScrollview.contentOffset.y <= -100){
+//      //  [scrollView setContentOffset:scrollView.contentOffset animated:NO];
+//     //   scrollView.userInteractionEnabled = NO;
+//        
+//     //   [_uperScrollview removeFromSuperview];
+//        if(_uperScrollview.gestureRecognizers.count != 0){
+//            UIPanGestureRecognizer * gesture =  [_uperScrollview.gestureRecognizers lastObject];
+//            YKLog(@"gesture = %@",gesture);
+//            _uperScrollview.contentOffset = CGPointMake(0, -100);
+//            [_bgScrollview addSubview:_uperScrollview];
+//            _uperScrollview.contentOffset = CGPointMake(0, -100);
+//            _uperScrollview.scrollEnabled = NO;
+//            
+//            //   _uperScrollview.contentOffset = scrollView.contentOffset;
+//            //   _uperScrollview.contentOffset = point;
+//            
+//            
+//            [_bgScrollview addGestureRecognizer:gesture];
+//            
+//        }else
+//            return;
+//        
+//        
+//        
+//    }
+    
+  //  NSLog(@"%s",__FUNCTION__);
+    
+    NSArray * gestureArray = scrollView.gestureRecognizers;
+ //   YKLog(@"gestureArray = %@",gestureArray);
+    
+    if(_uperScrollview.contentOffset.y > 240-64){
+        [_navigationBar removeFromSuperview];
+      //  [self.navigationController setNavigationBarHidden:NO animated:YES];
+        self.navigationController.navigationBar.hidden = NO;
+    }else{
+        [self.view addSubview:_navigationBar];
+        self.navigationController.navigationBar.hidden = YES;
     }
     
-    NSLog(@"%s",__FUNCTION__);
+    if(_uperScrollview.contentOffset.y < -120 && _isDragging == YES){
+        _bgImageview.frame = CGRectMake(0, -_uperScrollview.contentOffset.y-120, MAIN_W, _bgImageview.frame.size.height);
+    }
+    if(_isDragging == NO){
+        _bgImageview.frame = CGRectMake(0, -_uperScrollview.contentOffset.y-120, MAIN_W, _bgImageview.frame.size.height);
+        if(_bgImageview.frame.origin.x <= 0){
+            _bgImageview.frame = CGRectMake(0, 0, MAIN_W, _bgImageview.frame.size.height);
+        }
+    }
+    
+    if(_uperScrollview.contentOffset.y >0){
+        _bgImageview.frame = CGRectMake(0, -_uperScrollview.contentOffset.y, MAIN_W, _bgImageview.frame.size.height);
+    }
+    
 }
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
 {
@@ -403,11 +463,13 @@
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
      NSLog(@"%s",__FUNCTION__);
+    _isDragging = NO;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
      NSLog(@"%s",__FUNCTION__);
+    _isDragging = YES;
 }
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
