@@ -117,8 +117,7 @@
 #pragma mark -- 网络请求
 - (void)requestRankList
 {
-    /*
-   method=baidu.ting.billboard.billList&type=200&format=json&offset=0&size=50&from=ios&fields=title,song_id,author,resource_type,havehigh,is_new,has_mv_mobile,album_title,ting_uid,album_id,charge,all_rate&version=5.2.1&from=ios&channel=appstore
+    /*method=baidu.ting.billboard.billList&type=200&format=json&offset=0&size=50&from=ios&fields=title,song_id,author,resource_type,havehigh,is_new,has_mv_mobile,album_title,ting_uid,album_id,charge,all_rate&version=5.2.1&from=ios&channel=appstore
      */
     NSString * urlString = [NSString stringWithFormat:@"%@?method=%@&&type=%@&format=json&offset=0&size=%@&from=ios&fields=title,song_id,author,resource_type,havehigh,is_new,has_mv_mobile,album_title,ting_uid,album_id,charge,all_rate&version=5.2.1&from=ios&channel=appstore",URL_SERVER_ADDRESS_1,@"baidu.ting.billboard.billList",_contentItemModel.type,_size];
     SFRequest * request = [[SFRequest alloc] init];
@@ -163,12 +162,11 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"SFRankListItemCell" owner:self options:nil] lastObject];
     }
     SFSongModel * oneModel = [self.rankListArray objectAtIndex:indexPath.row];
-    NSString * rankStr = [NSString stringWithFormat:@"%d",indexPath.row +1];
+    NSString * rankStr = [NSString stringWithFormat:@"%ld",indexPath.row +1];
     cell.rankNumLabel.text = [self dealWithRankNumWithString:rankStr];
     [self setTextColorForLabel:cell.rankNumLabel];
     cell.songNameLabel.text = oneModel.title;
     cell.singerNameLabel.text = oneModel.author;
-    
     return cell;
 }
 #pragma mark -- 私有方法
@@ -202,5 +200,8 @@
 {
     
 }
-
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    
+}
 @end

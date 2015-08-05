@@ -7,7 +7,7 @@
 //
 
 #import "SFPlaySongViewController.h"
-
+#import "SFPlayViewController.h"
 @interface SFPlaySongViewController ()
 
 @end
@@ -16,12 +16,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.view.backgroundColor = [UIColor redColor];
+  //  [self setupSubviews];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)setupSubviews
+{
+    UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+    [self.view addGestureRecognizer:tapGesture];
+}
+- (void)tapAction:(UITapGestureRecognizer *)tapGesture
+{
+    SFPlayViewController * playVC = [SFPlayViewController sharedInstance];
+    [self presentViewController:playVC animated:YES completion:nil];
 }
 YKSingleton_M
 

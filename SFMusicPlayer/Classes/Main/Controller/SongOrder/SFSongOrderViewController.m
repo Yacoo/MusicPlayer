@@ -85,7 +85,7 @@ static NSString * const reuseIdentifier = @"songOrder";
     }
     layout.sectionInset = UIEdgeInsetsMake(MARGIN, MARGIN, MARGIN, MARGIN);
 
-    self.songOrderCollection = [[UICollectionView alloc] initWithFrame:CGRectMake(MARGIN, 30+MARGIN*2, MAIN_W-MARGIN*2, MAIN_H-108-30-MARGIN*2-49) collectionViewLayout:layout];
+    self.songOrderCollection = [[UICollectionView alloc] initWithFrame:CGRectMake(MARGIN, 30+MARGIN*2, MAIN_W-MARGIN*2, MAIN_H-108-30-MARGIN*2) collectionViewLayout:layout];
     self.songOrderCollection.backgroundColor = [UIColor whiteColor];
     self.songOrderCollection.dataSource = self;
     self.songOrderCollection.delegate = self;

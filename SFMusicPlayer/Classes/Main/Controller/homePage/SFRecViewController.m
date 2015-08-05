@@ -36,7 +36,6 @@
     [self setupSubviews];
     [self initData];
 
-    
     //请求数据
     [self sendRequest];
 
@@ -107,6 +106,8 @@
     [bgScrollview addSubview:_pageControl];
     
 }
+
+
 #pragma mark -- 请求数据
 - (void)sendRequest
 {
@@ -179,9 +180,9 @@ method=baidu.ting.plaza.getRecommendAlbum&format=json&offset=0&limit=4&type=2&fr
     
     for(int i = 0;i < 6;i++){
         UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(MAIN_W*i, 0, MAIN_W, 180)];
-        imageView.backgroundColor = YKRandomColor;
+       // imageView.backgroundColor = YKRandomColor;
         
-        imageView.image = [UIImage imageNamed:@"123"];
+        imageView.image = [UIImage imageNamed:@"img_default_playlist546"];
         [_showImageviewArray addObject:imageView];
         [_randomScrollview addSubview:imageView];
     }
@@ -199,9 +200,9 @@ method=baidu.ting.plaza.getRecommendAlbum&format=json&offset=0&limit=4&type=2&fr
         }
         SFRandPicModel * onePicModel = [SFRandPicModel objectWithKeyValues:picdic];
         if(IPHONE6){
-            [imageview sd_setImageWithURL:[NSURL URLWithString:onePicModel.randpic_iphone6] placeholderImage:[UIImage imageNamed:@"123"]];
+            [imageview sd_setImageWithURL:[NSURL URLWithString:onePicModel.randpic_iphone6] placeholderImage:[UIImage imageNamed:@"img_default_playlist546"]];
         }else{
-            [imageview sd_setImageWithURL:[NSURL URLWithString:onePicModel.randpic] placeholderImage:[UIImage imageNamed:@"123"]];
+            [imageview sd_setImageWithURL:[NSURL URLWithString:onePicModel.randpic] placeholderImage:[UIImage imageNamed:@"img_default_playlist546"]];
         }
         [self.randPicModelArray addObject:onePicModel];
     }
@@ -224,6 +225,10 @@ method=baidu.ting.plaza.getRecommendAlbum&format=json&offset=0&limit=4&type=2&fr
     }else
     {
         _pageControl.currentPage = pageNumber;
+    }
+    
+    if(scrollView == _recCollection){
+        NSLog(@"%s",__FUNCTION__);
     }
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView

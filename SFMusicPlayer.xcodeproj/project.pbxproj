@@ -28,7 +28,6 @@
 		32B750FD1ACE77F5008B1430 /* SFMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B750E41ACE77F5008B1430 /* SFMainViewController.m */; };
 		32B750FE1ACE77F5008B1430 /* SFRecViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B750E61ACE77F5008B1430 /* SFRecViewController.m */; };
 		32B750FF1ACE77F5008B1430 /* SFPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B750E91ACE77F5008B1430 /* SFPlayViewController.m */; };
-		32B751001ACE77F5008B1430 /* SFPlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32B750EA1ACE77F5008B1430 /* SFPlayViewController.xib */; };
 		32B751011ACE77F5008B1430 /* SFRadioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B750EC1ACE77F5008B1430 /* SFRadioViewController.m */; };
 		32B751021ACE77F5008B1430 /* SFRadioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32B750ED1ACE77F5008B1430 /* SFRadioViewController.xib */; };
 		32B751031ACE77F5008B1430 /* SFRankOrderListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B750F01ACE77F5008B1430 /* SFRankOrderListController.m */; };
@@ -55,6 +54,9 @@
 		32DC344F1ACD09A20045A410 /* SFSongOrderListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC344E1ACD09A20045A410 /* SFSongOrderListModel.m */; };
 		32DC34521ACD09CA0045A410 /* SFSongModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC34511ACD09CA0045A410 /* SFSongModel.m */; };
 		32DC34561ACD32400045A410 /* UIImage+MostColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC34551ACD32400045A410 /* UIImage+MostColor.m */; };
+		32F23D231B71F12F00DCC613 /* SongInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F23D221B71F12F00DCC613 /* SongInfo.m */; };
+		32F23D251B71F46E00DCC613 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F23D241B71F46E00DCC613 /* AVFoundation.framework */; };
+		32F23D281B7206F900DCC613 /* SFBlueIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F23D271B7206F900DCC613 /* SFBlueIconView.m */; };
 		33673F9C2EED1ABAD1A9D0D9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F68D9C33F1A5325F0750ED8E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -106,7 +108,6 @@
 		32B750E61ACE77F5008B1430 /* SFRecViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFRecViewController.m; sourceTree = "<group>"; };
 		32B750E81ACE77F5008B1430 /* SFPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFPlayViewController.h; sourceTree = "<group>"; };
 		32B750E91ACE77F5008B1430 /* SFPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFPlayViewController.m; sourceTree = "<group>"; };
-		32B750EA1ACE77F5008B1430 /* SFPlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SFPlayViewController.xib; sourceTree = "<group>"; };
 		32B750EB1ACE77F5008B1430 /* SFRadioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFRadioViewController.h; sourceTree = "<group>"; };
 		32B750EC1ACE77F5008B1430 /* SFRadioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFRadioViewController.m; sourceTree = "<group>"; };
 		32B750ED1ACE77F5008B1430 /* SFRadioViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SFRadioViewController.xib; sourceTree = "<group>"; };
@@ -157,6 +158,11 @@
 		32DC34511ACD09CA0045A410 /* SFSongModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFSongModel.m; sourceTree = "<group>"; };
 		32DC34541ACD32400045A410 /* UIImage+MostColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MostColor.h"; sourceTree = "<group>"; };
 		32DC34551ACD32400045A410 /* UIImage+MostColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MostColor.m"; sourceTree = "<group>"; };
+		32F23D211B71F12F00DCC613 /* SongInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongInfo.h; sourceTree = "<group>"; };
+		32F23D221B71F12F00DCC613 /* SongInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongInfo.m; sourceTree = "<group>"; };
+		32F23D241B71F46E00DCC613 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		32F23D261B7206F900DCC613 /* SFBlueIconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFBlueIconView.h; sourceTree = "<group>"; };
+		32F23D271B7206F900DCC613 /* SFBlueIconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFBlueIconView.m; sourceTree = "<group>"; };
 		43DA7C1AC4E82DD21A82BE4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F68D9C33F1A5325F0750ED8E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -166,6 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32F23D251B71F46E00DCC613 /* AVFoundation.framework in Frameworks */,
 				33673F9C2EED1ABAD1A9D0D9 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,7 +214,6 @@
 			children = (
 				32B750E81ACE77F5008B1430 /* SFPlayViewController.h */,
 				32B750E91ACE77F5008B1430 /* SFPlayViewController.m */,
-				32B750EA1ACE77F5008B1430 /* SFPlayViewController.xib */,
 				32B750EB1ACE77F5008B1430 /* SFRadioViewController.h */,
 				32B750EC1ACE77F5008B1430 /* SFRadioViewController.m */,
 				32B750ED1ACE77F5008B1430 /* SFRadioViewController.xib */,
@@ -304,6 +310,8 @@
 				32DC344E1ACD09A20045A410 /* SFSongOrderListModel.m */,
 				32DC34501ACD09CA0045A410 /* SFSongModel.h */,
 				32DC34511ACD09CA0045A410 /* SFSongModel.m */,
+				32F23D211B71F12F00DCC613 /* SongInfo.h */,
+				32F23D221B71F12F00DCC613 /* SongInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -330,6 +338,8 @@
 				32B750DA1ACE5EAE008B1430 /* SFRankListItemCell.h */,
 				32B750DB1ACE5EAE008B1430 /* SFRankListItemCell.m */,
 				32B750DC1ACE5EAE008B1430 /* SFRankListItemCell.xib */,
+				32F23D261B7206F900DCC613 /* SFBlueIconView.h */,
+				32F23D271B7206F900DCC613 /* SFBlueIconView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -446,6 +456,7 @@
 		48EAE64781BFCE5A94D72F87 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32F23D241B71F46E00DCC613 /* AVFoundation.framework */,
 				F68D9C33F1A5325F0750ED8E /* libPods.a */,
 			);
 			name = Frameworks;
@@ -553,7 +564,6 @@
 				32C8F3DA1ACFA9FB004F6E75 /* SFSingerSelectViewController.xib in Resources */,
 				32CFFD6D1ABD81C500FC2C47 /* LaunchScreen.xib in Resources */,
 				32B751021ACE77F5008B1430 /* SFRadioViewController.xib in Resources */,
-				32B751001ACE77F5008B1430 /* SFPlayViewController.xib in Resources */,
 				32B729ED1ACA3FC500D0AAE1 /* SFRecItemCell.xib in Resources */,
 				32CFFD6A1ABD81C500FC2C47 /* Images.xcassets in Resources */,
 			);
@@ -620,6 +630,7 @@
 				32B729F51ACA726D00D0AAE1 /* SFSongOrderModel.m in Sources */,
 				32B751071ACE77F5008B1430 /* SFSongOrderDetailViewController.m in Sources */,
 				32B751061ACE77F5008B1430 /* SFSingerViewController.m in Sources */,
+				32F23D231B71F12F00DCC613 /* SongInfo.m in Sources */,
 				32C8F3CF1ACF9D28004F6E75 /* SFTool.m in Sources */,
 				32B72A031ACA94C600D0AAE1 /* SFContentItemModel.m in Sources */,
 				32B751051ACE77F5008B1430 /* SFSingerListViewController.m in Sources */,
@@ -629,6 +640,7 @@
 				32B950BB1ACFFA7400EBC2B9 /* SFSingerDetailViewController.m in Sources */,
 				32B751041ACE77F5008B1430 /* SFRankViewController.m in Sources */,
 				32B750FE1ACE77F5008B1430 /* SFRecViewController.m in Sources */,
+				32F23D281B7206F900DCC613 /* SFBlueIconView.m in Sources */,
 				32B751031ACE77F5008B1430 /* SFRankOrderListController.m in Sources */,
 				32DC34521ACD09CA0045A410 /* SFSongModel.m in Sources */,
 				32B750FD1ACE77F5008B1430 /* SFMainViewController.m in Sources */,
@@ -765,6 +777,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Pu Hua Zhou (8FN8XM6G52)";
 				GCC_PREFIX_HEADER = SFMusicPlayer/Classes/Other/PrefixHeader.pch;
 				INFOPLIST_FILE = SFMusicPlayer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1e0afa07-6e41-43a9-a19f-44ed7759b8c2";
@@ -779,6 +792,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Pu Hua Zhou (8FN8XM6G52)";
 				GCC_PREFIX_HEADER = SFMusicPlayer/Classes/Other/PrefixHeader.pch;
 				INFOPLIST_FILE = SFMusicPlayer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1e0afa07-6e41-43a9-a19f-44ed7759b8c2";

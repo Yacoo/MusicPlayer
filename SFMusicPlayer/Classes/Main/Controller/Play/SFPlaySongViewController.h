@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 #import "YKSingleton.h"
 @interface SFPlaySongViewController : UIViewController
-
+YKSingleton_H
 @end

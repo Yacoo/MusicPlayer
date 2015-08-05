@@ -37,7 +37,7 @@ static NSString * const reuseIdentifier = @"rank";
         layout.itemSize = CGSizeMake(165, 220);
     }
     layout.sectionInset = UIEdgeInsetsMake(MARGIN, MARGIN, MARGIN, MARGIN);
-    self.rankCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(MARGIN, MARGIN, MAIN_W-MARGIN*2, MAIN_H-108-MARGIN-49) collectionViewLayout:layout];
+    self.rankCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(MARGIN, MARGIN, MAIN_W-MARGIN*2, MAIN_H-108-MARGIN) collectionViewLayout:layout];
     self.rankCollectionView.backgroundColor = [UIColor whiteColor];
     [self.rankCollectionView registerNib:[UINib nibWithNibName:@"SFRankCell" bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
     self.rankCollectionView.dataSource = self;

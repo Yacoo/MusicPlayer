@@ -94,7 +94,12 @@
 - (void)addPanGesture
 {
   //  UIPanGestureRecognizer * panGestuer = [_uperScrollview.gestureRecognizers lastObject];
+#define imagetransfer(str) ({if([str hasSuffix:@".jpg"]){\
+[str stringByReplacingOccurrencesOfString:@".jpg" withString:@"_ppc.jpg"];\
+}str;})
 
+    NSString * str =  imagetransfer(@"123.jpg");
+    
     
 }
 
@@ -223,6 +228,20 @@
      hotSongButton.titleEdgeInsets = UIEdgeInsetsMake(0,6, 0, 0);
     hotSongButton.backgroundColor = [UIColor whiteColor];
     [tableviewBgView addSubview:hotSongButton];
+    
+    
+    UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0, 0, 100, 30);
+    //设置标题内容
+    [button setTitle:@"点击" forState:UIControlStateNormal];
+    //设置图片
+    [button setImage:[UIImage imageNamed:@"bt_singerdetails_play_normal"] forState:UIControlStateNormal];
+    //改变默认标题位置 上，左，下，右
+    button.titleEdgeInsets = UIEdgeInsetsMake(0,6, 0, 0);
+    //改变默认图片位置 上，左，下，右
+    button.imageEdgeInsets = UIEdgeInsetsMake(0,-20,0,button.titleLabel.bounds.size.width);
+    
+    [self.view addSubview:button];
     
     //收藏按钮
     UIButton * collectionButton = [UIButton buttonWithType:UIButtonTypeCustom];

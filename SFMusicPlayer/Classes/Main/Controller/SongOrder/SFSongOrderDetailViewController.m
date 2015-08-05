@@ -15,7 +15,9 @@
 #import "UIImage+MostColor.h"
 #import "SFSongOrderDetailCell.h"
 #import "SFTool.h"
-
+#import "SFRadioViewController.h"
+#define kMARGIN 8
+#define kClearBgHeight MAIN_H/2-100
 @interface SFSongOrderDetailViewController ()
 {
    
@@ -63,19 +65,24 @@
     //导航条颜色
     //设置导航栏
     [SFTool setNavBarWithNavagationBar:self];
-//    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
-   [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
-//    [self.navigationController.navigationBar setBackIndicatorImage:[UIImage imageNamed:@"123"]];
-   self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    self.navigationController.navigationBar.translucent = YES;
-    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bt_playpage_mask"] forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
     //设置背景图片和文字
     [self createBgTextAndView];
     
     //设置上方蒙版scrollview
     [self createScrollList];
     
+    //创建播放蓝色图标；
+    
+    
     [self requestSongOrder];
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"123"] forBarMetrics:UIBarMetricsDefault];
+    
 }
 #pragma mark -- UI
 - (void)createBgTextAndView
@@ -86,14 +93,14 @@
     [self.view addSubview:_bgImageview];
     
     //下方文字
-    _bottomTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(MARGIN *2, _bgImageview.frame.size.height+MARGIN*2, MAIN_W-MARGIN*4, 30)];
+    _bottomTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMARGIN *2, _bgImageview.frame.size.height+kMARGIN*2, MAIN_W-kMARGIN*4, 30)];
     _bottomTitleLabel.text = @"";
     _bottomTitleLabel.font = [UIFont fontWithName:@"Times New Roman" size:19.0];
     _bottomTitleLabel.textColor = YKColor(245, 245, 220);
     [self.view addSubview:_bottomTitleLabel];
     
     //标签
-    _tagLabel = [[UILabel alloc] initWithFrame:CGRectMake(MARGIN*2, _bottomTitleLabel.frame.origin.y+_bottomTitleLabel.frame.size.height+MARGIN*2, MAIN_W-MARGIN*4, 25)];
+    _tagLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMARGIN*2, _bottomTitleLabel.frame.origin.y+_bottomTitleLabel.frame.size.height+kMARGIN*2, MAIN_W-kMARGIN*4, 25)];
     _tagLabel.text = @"";
     _tagLabel.font = [UIFont fontWithName:@"Times New Roman" size:14.0];
     _tagLabel.backgroundColor = [UIColor clearColor];
@@ -101,7 +108,7 @@
     [self.view addSubview:_tagLabel];
     
     //介绍
-    _deacLabel = [[UILabel alloc] initWithFrame:CGRectMake(MARGIN*2, _tagLabel.frame.origin.y+_tagLabel.frame.size.height, MAIN_W-MARGIN*4, 100)];
+    _deacLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMARGIN*2, _tagLabel.frame.origin.y+_tagLabel.frame.size.height, MAIN_W-kMARGIN*4, 100)];
     _deacLabel.font = [UIFont fontWithName:@"Times New Roman" size:14.0];
     _deacLabel.numberOfLines = 0;
     //米黄色 YKColor(247, 238, 214)
@@ -115,53 +122,60 @@
 }
 - (void)createScrollList
 {
-    self.songListScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(MARGIN, 0, MAIN_W-MARGIN*2, MAIN_H)];
-    self.songListScroll.contentSize = CGSizeMake(MAIN_W-MARGIN*2, 800);
+    self.songListScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(kMARGIN, 0, MAIN_W-kMARGIN*2, MAIN_H)];
+    self.songListScroll.contentSize = CGSizeMake(MAIN_W-kMARGIN*2, 800);
     self.songListScroll.backgroundColor = [UIColor clearColor];
     self.songListScroll.delegate = self;
+    self.songListScroll.showsVerticalScrollIndicator = NO;
     [self.view addSubview:self.songListScroll];
     
     //scrollview上方背景view
-    _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAIN_W-MARGIN*2, MAIN_H/2-40)];
+    _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAIN_W-kMARGIN*2, kClearBgHeight)];
     _bgView.backgroundColor = [UIColor clearColor];
     _bgView.userInteractionEnabled = YES;
     [self.songListScroll addSubview:_bgView];
     
+    //背景maskdown图片
+    UIImageView * maskImageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, kClearBgHeight - 64, MAIN_W-kMARGIN*2, 64)];
+    maskImageview.image = [UIImage imageNamed:@"bt_singerdetails_maskdown"];
+    [_bgView addSubview:maskImageview];
+    
+    
     //标题label
-    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(MARGIN*2, 200, MAIN_W-MARGIN*6, 60)];
+    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMARGIN*2, 0, MAIN_W-kMARGIN*6, 40)];
     _titleLabel.text = @"";
     _titleLabel.textColor = [UIColor whiteColor];
     _titleLabel.backgroundColor = [UIColor clearColor];
     _titleLabel.numberOfLines = 0;
     _titleLabel.font = [UIFont systemFontOfSize:19.0];
-    [_bgView addSubview:_titleLabel];
+    [maskImageview addSubview:_titleLabel];
     
     //听歌imageview
-    UIImageView * onLineImage = [[UIImageView alloc] initWithFrame:CGRectMake(MARGIN*2, _titleLabel.frame.origin.y+_titleLabel.frame.size.height, 15, 15)];
+    UIImageView * onLineImage = [[UIImageView alloc] initWithFrame:CGRectMake(kMARGIN*2, _titleLabel.frame.origin.y+_titleLabel.frame.size.height, 15, 15)];
     onLineImage.image = [UIImage imageNamed:@"ic_onlinemusic_listen_number"];
-    [_bgView addSubview:onLineImage];
+    [maskImageview addSubview:onLineImage];
     
     //听歌人数
     _onLineNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(onLineImage.frame.origin.x+onLineImage.frame.size.width, onLineImage.frame.origin.y, 50, 15)];
     _onLineNumLabel.text = @"";
     _onLineNumLabel.font = [UIFont systemFontOfSize:12.0];
     _onLineNumLabel.textColor = [UIColor whiteColor];
-    [_bgView addSubview:_onLineNumLabel];
+    [maskImageview addSubview:_onLineNumLabel];
     
     //收藏image
     UIImageView * collectionImage = [[UIImageView alloc] initWithFrame:CGRectMake(_onLineNumLabel.frame.origin.x+_onLineNumLabel.frame.size.width+15, onLineImage.frame.origin.y, 15, 15)];
     collectionImage.image = [UIImage imageNamed:@"bt_playpage_collection_normal"];
-    [_bgView addSubview:collectionImage];
+    [maskImageview addSubview:collectionImage];
     
     _collectionNum = [[UILabel alloc] initWithFrame:CGRectMake(collectionImage.frame.origin.x+collectionImage.frame.size.width+5, onLineImage.frame.origin.y, 40, 15)];
     _collectionNum.text = @"";
     _collectionNum.font = [UIFont systemFontOfSize:12.0];
     _collectionNum.textColor = [UIColor whiteColor];
-    [_bgView addSubview:_collectionNum];
+    [maskImageview addSubview:_collectionNum];
     
     
     //标签背景view
-    UIView * tagBgView = [[UIView alloc] initWithFrame:CGRectMake(0, _bgView.frame.size.height, MAIN_W-MARGIN*2, 50)];
+    UIView * tagBgView = [[UIView alloc] initWithFrame:CGRectMake(0, _bgView.frame.size.height, MAIN_W-kMARGIN*2, 50)];
     tagBgView.backgroundColor = [UIColor whiteColor];
     [self.songListScroll addSubview:tagBgView];
     tagBgView.userInteractionEnabled = YES;
@@ -171,7 +185,7 @@
     //收起按钮
     UIButton * closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     closeButton.frame = CGRectMake(0, 0, 50, 15);
-    closeButton.center = CGPointMake(tagBgView.center.x+MARGIN, tagBgView.frame.origin.y-5);
+    closeButton.center = CGPointMake(tagBgView.center.x+kMARGIN, tagBgView.frame.origin.y-5);
     closeButton.layer.cornerRadius = 4.0;
     [closeButton addTarget:self action:@selector(closeButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     _close = NO;
@@ -186,12 +200,12 @@
     [self.songListScroll addSubview:closeButton];
     
     //下方分割线
-    UIView * separatorLine = [[UIView alloc] initWithFrame:CGRectMake(MARGIN*2, tagBgView.frame.size.height-1, MAIN_W-MARGIN*4, 1)];
+    UIView * separatorLine = [[UIView alloc] initWithFrame:CGRectMake(kMARGIN*2, tagBgView.frame.size.height-1, MAIN_W-kMARGIN*4, 1)];
     separatorLine.backgroundColor = [UIColor lightGrayColor];
     [tagBgView addSubview:separatorLine];
     
     //歌曲总数label
-    _totalNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(MARGIN*2, 10, 60, 20)];
+    _totalNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMARGIN*2, 10, 60, 20)];
     _totalNumLabel.text = @"";
     _totalNumLabel.textColor = [UIColor grayColor];
     [tagBgView addSubview:_totalNumLabel];
@@ -219,11 +233,12 @@
     [tagBgView addSubview:shareButton];
     
     //下方tableview
-    self.songListTableview = [[UITableView alloc] initWithFrame:CGRectMake(0, tagBgView.frame.origin.y+tagBgView.frame.size.height, MAIN_W-MARGIN*2, 500)];
+    self.songListTableview = [[UITableView alloc] initWithFrame:CGRectMake(0, tagBgView.frame.origin.y+tagBgView.frame.size.height, MAIN_W-kMARGIN*2, 500)];
     self.songListTableview.delegate = self;
     self.songListTableview.dataSource = self;
     self.songListTableview.scrollEnabled = NO;
     self.songListTableview.backgroundColor = [UIColor whiteColor];
+    self.songListTableview.showsVerticalScrollIndicator = NO;
     self.songListTableview.rowHeight = 64;
     [self.songListScroll addSubview:self.songListTableview];
     
@@ -246,6 +261,7 @@
     [request request:urlString params:nil success:^(id json) {
        _songOrderListModel = [SFSongOrderListModel objectWithKeyValues:json];
        
+      //  NSLog(@"json = %@",json);
         [self dealWithRequestData];
         
     } failure:^(NSError *error) {
@@ -282,10 +298,10 @@
   //  _deacLabel.text = [NSString stringWithFormat:@"介绍：%@",_songOrderListModel.desc];
     //调整label的frame
     CGRect rect = [self contentHeight:[NSString stringWithFormat:@"介绍：%@",_songOrderListModel.desc]];
-//    _deacLabel.frame = CGRectMake(MARGIN*2, _tagLabel.frame.origin.y+_tagLabel.frame.size.height, MAIN_W-MARGIN*4, height);
+//    _deacLabel.frame = CGRectMake(kMARGIN*2, _tagLabel.frame.origin.y+_tagLabel.frame.size.height, MAIN_W-kMARGIN*4, height);
     
  //   [_deacLabel setFrame:rect];
-    [_deacLabel setFrame:CGRectMake(MARGIN*2,  _tagLabel.frame.origin.y+_tagLabel.frame.size.height, rect.size.width, rect.size.height)];
+    [_deacLabel setFrame:CGRectMake(kMARGIN*2,  _tagLabel.frame.origin.y+_tagLabel.frame.size.height, rect.size.width, rect.size.height)];
     
     //底层图片
   //  [_bgImageview sd_setImageWithURL:[NSURL URLWithString:_songOrderListModel.pic_300] placeholderImage:[UIImage imageNamed:@"img_default_playlist546"]];
@@ -313,7 +329,7 @@
         self.songListTableview.frame = CGRectMake(tableViewRect.origin.x, tableViewRect.origin.y, tableViewRect.size.width, MAIN_H-_bgView.frame.size.height-50);
     }
 
-    self.songListScroll.contentSize = CGSizeMake(MAIN_W-MARGIN*2, _bgView.frame.size.height+50+self.songListTableview.frame.size.height);
+    self.songListScroll.contentSize = CGSizeMake(MAIN_W-kMARGIN*2, _bgView.frame.size.height+50+self.songListTableview.frame.size.height);
     
 }
 /**
@@ -328,7 +344,7 @@
     [contentString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Times New Roman" size:14.0] range:NSMakeRange(0, content.length)];
     NSDictionary *attribute = @{ NSFontAttributeName:[UIFont fontWithName:@"Times New Roman" size:14.0], NSParagraphStyleAttributeName:paragraphStyle};
     
-    CGRect textRext = [content boundingRectWithSize:CGSizeMake(MAIN_W-MARGIN*4, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attribute context:nil];
+    CGRect textRext = [content boundingRectWithSize:CGSizeMake(MAIN_W-kMARGIN*4, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attribute context:nil];
     [_deacLabel setAttributedText:contentString];
     return textRext;
    
@@ -414,6 +430,7 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"SFSongOrderDetailCell" owner:self options:nil] lastObject];
     }
     SFSongModel * songModel = _songOrderListModel.content[indexPath.row];
+   
     cell.songNameLabel.text = songModel.title;
     cell.singerNameLabel.text = songModel.author;
     
@@ -422,7 +439,25 @@
 #pragma mark -- <UITableViewDelegate>
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // http://tingapi.ting.baidu.com/v1/restserver/ting?songid=1996607&method=baidu.ting.song.getinfo&format=json
+    SFSongModel * songModel = _songOrderListModel.content[indexPath.row];
     
+    NSString * urlString = [NSString stringWithFormat:@"%@?songid=%@&method=%@&format=%@",URL_SERVER_ADDRESS_1,songModel.song_id,@"baidu.ting.song.getinfo",@"json"];
+    SFRequest * request = [[SFRequest alloc] init];
+    [request request:urlString params:nil success:^(id json) {
+       // _songOrderListModel = [SFSongOrderListModel objectWithKeyValues:json];
+        NSDictionary * songUrl = json[@"songurl"];
+        NSArray * url = songUrl[@"url"];
+        NSString * fielLink = [[url objectAtIndex:0] objectForKey:@"file_link"];
+        SFRadioViewController * radioVC = [[SFRadioViewController alloc] init];
+        [radioVC playMusicWithFileLink:fielLink];
+        
+          NSLog(@"json = %@",json);
+    //    [self dealWithRequestData];
+        
+    } failure:^(NSError *error) {
+        YKLog(@"error = %@",error);
+    }];
 }
 #pragma mark -- <UIScrollViewDelegate>
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -431,7 +466,17 @@
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-   //  NSLog(@"%s",__FUNCTION__);
+    if(scrollView == self.songListScroll){
+       // YKLog(@"y = %f",self.songListScroll.contentOffset.y);
+        CGFloat y = scrollView.contentOffset.y;
+        if(y >= kClearBgHeight){
+            [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"123"] forBarMetrics:UIBarMetricsDefault];
+            self.title = _songOrderListModel.title;
+        }else{
+            [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bt_playpage_mask"] forBarMetrics:UIBarMetricsDefault];
+            self.title = @"";
+        }
+    }
 
 }
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate

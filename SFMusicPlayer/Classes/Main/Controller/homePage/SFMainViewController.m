@@ -12,7 +12,10 @@
 #import "SFRankViewController.h"
 #import "SFSingerViewController.h"
 #import "SFPlayViewController.h"
-
+#import "AFHTTPRequestOperation.h"
+#import "AppDelegate.h"
+#import "SFRadioViewController.h"
+#import "SFBlueIconView.h"
 @interface SFMainViewController ()<UIScrollViewDelegate>
 {
     UIScrollView * _indicatorScroll;
@@ -57,12 +60,48 @@
     [super viewDidLoad];
     [self initData];
     [self setupSubviews];
+    
 }
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setBarTintColor:YKColor(34, 145, 231)];
     self.navigationController.navigationBar.alpha = 0.8;
+    
+  //  NSURLRequest * request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"123"]];
+  //  AFHTTPRequestOperation *redirectOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    /*
+     Sets a block to be executed when the server redirects the request from one URL to another URL, or when the request URL changed by the `NSURLProtocol` subclass handling the request in order to standardize its format, as handled by the `NSURLConnectionDataDelegate` method `connection:willSendRequest:redirectResponse:`.
+     */
+    
+//    [redirectOperation setRedirectResponseBlock:^NSURLRequest *(NSURLConnection *connection, NSURLRequest *request, NSURLResponse *redirectResponse) {
+//        if (redirectResponse) {
+//            
+//            NSHTTPURLResponse * httpResponse = (NSHTTPURLResponse *)redirectResponse;
+//            NSURLResponse *returningResponse = [[NSURLResponse alloc] init];
+//
+//            NSLog(@"in redirect, request url: %@", request.URL);
+//            NSLog(@"response url: %@", redirectResponse.URL);
+//            NSLog(@"redirect  --%@", redirectOperation); // response为null
+//            
+//            [dic setObject:[NSString stringWithFormat:@"%d", httpResponse.statusCode] forKey:@"responseStatusCode"];
+//            
+//            [dic setObject:httpResponse.allHeaderFields forKey:@"responseHeaders"];
+//            
+//            [redirectOperation cancel];
+//            
+//            
+//            
+//            return request;
+//        } else {
+//            NSLog(@"no redirect + %@“ redirectOperation);
+//                  return request;
+//                  }
+//                  }];
+    
+    
+    
 }
 - (void)setupSubviews
 {
@@ -70,6 +109,7 @@
     [self setupbgBarView];
     [self setupPlayVC];
 }
+
 - (void)setupbgBarView
 {
     //指示滚轮
@@ -118,16 +158,43 @@
     
     self.singerVC = [[SFSingerViewController alloc] init];
     self.singerVC.view.frame = CGRectMake(MAIN_W*3, 0, MAIN_W, MAIN_H-44-49);
+   
 }
 
 - (void)setupPlayVC
 {
-    SFPlayViewController * playVC = [SFPlayViewController sharedInstance];
-    playVC.view.frame = CGRectMake(0, 0, MAIN_W, 49);
-    playVC.view.center = CGPointMake(MAIN_W/2, MAIN_H-49/2);
-    [self.view addSubview:playVC.view];
-    [self addChildViewController:playVC];
+    // bt_scenarioplay_pause@3x   bt_scenarioplay_play@3x  bt_scenarioplay_trash_normal@3x
+//    SFPlayViewController * playVC = [SFPlayViewController sharedInstance];
+//    playVC.view.frame = CGRectMake(0, 0, 50, 50);
+//    playVC.view.backgroundColor = YKColor(34, 145, 231);
+//    playVC.view.layer.cornerRadius = 25.0;
+//    playVC.view.center = CGPointMake(40, MAIN_H-40);
+//    playVC.view.alpha = 0.6;
     
+    
+    SFBlueIconView * blueIcon = [SFBlueIconView sharedInstance];
+    blueIcon.frame = CGRectMake(0, 0, 50, 50);
+    blueIcon.backgroundColor = YKColor(34, 145, 231);
+    blueIcon.layer.cornerRadius = 25.0;
+    blueIcon.center = CGPointMake(40, MAIN_H-40);
+    blueIcon.alpha = 0.6;
+    AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [delegate.window addSubview:blueIcon];
+  //  [delegate.window addChildViewController:playVC];
+    
+    
+    //添加手势
+    UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureAction:)];
+    [blueIcon addGestureRecognizer:tapGesture];
+}
+- (void)tapGestureAction:(UITapGestureRecognizer *)tapGesture
+{
+    SFRadioViewController * radioVC = [SFRadioViewController sharedInstance];
+    AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [delegate.window.rootViewController presentViewController:radioVC animated:YES completion:^{
+        SFBlueIconView * blueIcon = [SFBlueIconView sharedInstance];
+        [blueIcon removeFromSuperview];
+    }];
 }
 #pragma mark -- 初始化数据
 - (void)initData
