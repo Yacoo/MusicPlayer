@@ -16,6 +16,7 @@
 #import "AppDelegate.h"
 #import "SFRadioViewController.h"
 #import "SFBlueIconView.h"
+#import "MediaPlayer/MediaPlayer.h"
 @interface SFMainViewController ()<UIScrollViewDelegate>
 {
     UIScrollView * _indicatorScroll;
@@ -189,11 +190,23 @@
 }
 - (void)tapGestureAction:(UITapGestureRecognizer *)tapGesture
 {
+  //  MPMoviePlayerController * moviePlyer = [[MPMoviePlayerController alloc] init];
+    
     SFRadioViewController * radioVC = [SFRadioViewController sharedInstance];
+    
     AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [delegate.window.rootViewController presentViewController:radioVC animated:YES completion:^{
+        
+       
         SFBlueIconView * blueIcon = [SFBlueIconView sharedInstance];
         [blueIcon removeFromSuperview];
+//         [radioVC.view addSubview:radioVC.moviePlayer.view];
+//        radioVC.moviePlayer.shouldAutoplay = YES;
+//        [radioVC.moviePlayer setControlStyle:MPMovieControlStyleDefault];
+//        [radioVC.moviePlayer setFullscreen:YES];
+//        [radioVC.view setFrame:[UIScreen mainScreen].bounds];
+        
+        YKLog(@"view = %@,moviePlayer.view = %@",radioVC.view,radioVC.moviePlayer.view);
     }];
 }
 #pragma mark -- 初始化数据

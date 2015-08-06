@@ -10,6 +10,7 @@
                 <outlet property="closeButton" destination="aaM-LK-fQy" id="9YN-Jh-pVc"/>
                 <outlet property="downButtonView" destination="aNW-Xf-edi" id="cYN-Bc-mDr"/>
                 <outlet property="navigationView" destination="DAk-hP-Pn1" id="J3V-mG-Ftk"/>
+                <outlet property="playProgressView" destination="Ovj-F0-KX7" id="o8k-bG-eEd"/>
                 <outlet property="songInfoView" destination="4xN-gw-YxF" id="f8h-dZ-qwS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

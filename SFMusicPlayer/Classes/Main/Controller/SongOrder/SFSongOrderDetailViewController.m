@@ -16,6 +16,8 @@
 #import "SFSongOrderDetailCell.h"
 #import "SFTool.h"
 #import "SFRadioViewController.h"
+#import "SFSongUrl.h"
+#import "SongInfo.h"
 #define kMARGIN 8
 #define kClearBgHeight MAIN_H/2-100
 @interface SFSongOrderDetailViewController ()
@@ -445,19 +447,33 @@
     NSString * urlString = [NSString stringWithFormat:@"%@?songid=%@&method=%@&format=%@",URL_SERVER_ADDRESS_1,songModel.song_id,@"baidu.ting.song.getinfo",@"json"];
     SFRequest * request = [[SFRequest alloc] init];
     [request request:urlString params:nil success:^(id json) {
-       // _songOrderListModel = [SFSongOrderListModel objectWithKeyValues:json];
-        NSDictionary * songUrl = json[@"songurl"];
-        NSArray * url = songUrl[@"url"];
-        NSString * fielLink = [[url objectAtIndex:0] objectForKey:@"file_link"];
-        SFRadioViewController * radioVC = [[SFRadioViewController alloc] init];
-        [radioVC playMusicWithFileLink:fielLink];
-        
-          NSLog(@"json = %@",json);
-    //    [self dealWithRequestData];
+      
+        [self playMusicWithJson:json];
         
     } failure:^(NSError *error) {
         YKLog(@"error = %@",error);
     }];
+}
+- (void)playMusicWithJson:(id)json
+{
+    NSDictionary * songUrl = json[@"songurl"];
+    NSArray * urlArray = songUrl[@"url"];
+    NSMutableArray * songUrlArray = [NSMutableArray array];
+    for(NSDictionary * urlDic in urlArray){
+      SFSongUrl * songUrl =  [SFSongUrl objectWithKeyValues:urlDic];
+        [songUrlArray addObject:songUrl];
+    }
+    NSDictionary * songInfoDic = [json objectForKey:@"songinfo"];
+    SongInfo * songInfo = [SongInfo objectWithKeyValues:songInfoDic];
+    
+//    NSString * fielLink = [[url objectAtIndex:0] objectForKey:@"file_link"];
+    SFRadioViewController * radioVC = [SFRadioViewController sharedInstance];
+    radioVC.songUrlArray = songUrlArray;
+    radioVC.songInfo = songInfo;
+    [radioVC playMusic];
+    
+   // NSLog(@"json = %@",json);
+    //    [self dealWithRequestData];
 }
 #pragma mark -- <UIScrollViewDelegate>
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -489,7 +505,7 @@
   //  NSLog(@"%s",__FUNCTION__);
     if(self.songListScroll.contentOffset.y < -100){
         
-          [scrollView setContentOffset:CGPointMake(0, -280) animated:YES];
+          [scrollView setContentOffset:CGPointMake(0, -380) animated:YES];
         _close = YES;
         _bgView.hidden = YES;
         [self.view addSubview:_tapGestureView];

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		329322061B72F03B00CFF177 /* SFSongUrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 329322051B72F03B00CFF177 /* SFSongUrl.m */; };
+		329322091B72F62300CFF177 /* SFOneSong.m in Sources */ = {isa = PBXBuildFile; fileRef = 329322081B72F62300CFF177 /* SFOneSong.m */; };
+		3293220B1B73086C00CFF177 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3293220A1B73086C00CFF177 /* MediaPlayer.framework */; };
+		3293220E1B734DA300CFF177 /* SFPlayIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3293220D1B734DA300CFF177 /* SFPlayIndicatorView.m */; };
 		329731521AC10EB9007263CF /* SFSongOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 329731501AC10EB9007263CF /* SFSongOrderCell.m */; };
 		329731531AC10EB9007263CF /* SFSongOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 329731511AC10EB9007263CF /* SFSongOrderCell.xib */; };
 		329731651AC14DED007263CF /* SFRankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 329731631AC14DED007263CF /* SFRankCell.m */; };
@@ -72,6 +76,13 @@
 
 /* Begin PBXFileReference section */
 		0EA1874D0E6D8B9AE84E93B0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		329322041B72F03B00CFF177 /* SFSongUrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFSongUrl.h; sourceTree = "<group>"; };
+		329322051B72F03B00CFF177 /* SFSongUrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFSongUrl.m; sourceTree = "<group>"; };
+		329322071B72F62300CFF177 /* SFOneSong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFOneSong.h; sourceTree = "<group>"; };
+		329322081B72F62300CFF177 /* SFOneSong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFOneSong.m; sourceTree = "<group>"; };
+		3293220A1B73086C00CFF177 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		3293220C1B734DA300CFF177 /* SFPlayIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFPlayIndicatorView.h; sourceTree = "<group>"; };
+		3293220D1B734DA300CFF177 /* SFPlayIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFPlayIndicatorView.m; sourceTree = "<group>"; };
 		3297314F1AC10EB9007263CF /* SFSongOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFSongOrderCell.h; sourceTree = "<group>"; };
 		329731501AC10EB9007263CF /* SFSongOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFSongOrderCell.m; sourceTree = "<group>"; };
 		329731511AC10EB9007263CF /* SFSongOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SFSongOrderCell.xib; sourceTree = "<group>"; };
@@ -172,6 +183,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3293220B1B73086C00CFF177 /* MediaPlayer.framework in Frameworks */,
 				32F23D251B71F46E00DCC613 /* AVFoundation.framework in Frameworks */,
 				33673F9C2EED1ABAD1A9D0D9 /* libPods.a in Frameworks */,
 			);
@@ -312,6 +324,10 @@
 				32DC34511ACD09CA0045A410 /* SFSongModel.m */,
 				32F23D211B71F12F00DCC613 /* SongInfo.h */,
 				32F23D221B71F12F00DCC613 /* SongInfo.m */,
+				329322041B72F03B00CFF177 /* SFSongUrl.h */,
+				329322051B72F03B00CFF177 /* SFSongUrl.m */,
+				329322071B72F62300CFF177 /* SFOneSong.h */,
+				329322081B72F62300CFF177 /* SFOneSong.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -340,6 +356,8 @@
 				32B750DC1ACE5EAE008B1430 /* SFRankListItemCell.xib */,
 				32F23D261B7206F900DCC613 /* SFBlueIconView.h */,
 				32F23D271B7206F900DCC613 /* SFBlueIconView.m */,
+				3293220C1B734DA300CFF177 /* SFPlayIndicatorView.h */,
+				3293220D1B734DA300CFF177 /* SFPlayIndicatorView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -456,6 +474,7 @@
 		48EAE64781BFCE5A94D72F87 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3293220A1B73086C00CFF177 /* MediaPlayer.framework */,
 				32F23D241B71F46E00DCC613 /* AVFoundation.framework */,
 				F68D9C33F1A5325F0750ED8E /* libPods.a */,
 			);
@@ -618,6 +637,7 @@
 			files = (
 				32B751081ACE77F5008B1430 /* SFSongOrderViewController.m in Sources */,
 				32DC34561ACD32400045A410 /* UIImage+MostColor.m in Sources */,
+				329322091B72F62300CFF177 /* SFOneSong.m in Sources */,
 				32CACFF51AC257B700FCD4A3 /* SFSingerModel.m in Sources */,
 				32B729FB1ACA8D3B00D0AAE1 /* SFSongItemModel.m in Sources */,
 				32B750DD1ACE5EAE008B1430 /* SFRankListItemCell.m in Sources */,
@@ -629,6 +649,7 @@
 				32B729F11ACA49D800D0AAE1 /* SFHeaderView.m in Sources */,
 				32B729F51ACA726D00D0AAE1 /* SFSongOrderModel.m in Sources */,
 				32B751071ACE77F5008B1430 /* SFSongOrderDetailViewController.m in Sources */,
+				329322061B72F03B00CFF177 /* SFSongUrl.m in Sources */,
 				32B751061ACE77F5008B1430 /* SFSingerViewController.m in Sources */,
 				32F23D231B71F12F00DCC613 /* SongInfo.m in Sources */,
 				32C8F3CF1ACF9D28004F6E75 /* SFTool.m in Sources */,
@@ -647,6 +668,7 @@
 				32C8F3D91ACFA9FB004F6E75 /* SFSingerSelectViewController.m in Sources */,
 				32B729F81ACA7FB800D0AAE1 /* SFDiscModel.m in Sources */,
 				32B751011ACE77F5008B1430 /* SFRadioViewController.m in Sources */,
+				3293220E1B734DA300CFF177 /* SFPlayIndicatorView.m in Sources */,
 				32DC344F1ACD09A20045A410 /* SFSongOrderListModel.m in Sources */,
 				32CB44061AC9439C00D12D90 /* SFRequest.m in Sources */,
 				32B950B81ACFF6CB00EBC2B9 /* SFPlaySongViewController.m in Sources */,

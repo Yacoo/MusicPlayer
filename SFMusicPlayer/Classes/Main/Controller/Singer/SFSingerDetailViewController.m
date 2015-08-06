@@ -12,7 +12,9 @@
 #import <MJExtension.h>
 #import <UIImageView+WebCache.h>
 #import "SFSongOrderDetailCell.h"
-
+#import "SFSongUrl.h"
+#import "SongInfo.h"
+#import "SFRadioViewController.h"
 @interface SFSingerDetailViewController ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
 {
     UIScrollView * _bgScrollview;
@@ -114,7 +116,7 @@
     _bgScrollview.contentSize = CGSizeMake(MAIN_W, MAIN_H*2);
     [self.view addSubview:_bgScrollview];
     _bgScrollview.delegate = self;
-    _bgScrollview.backgroundColor = [UIColor greenColor];
+    _bgScrollview.backgroundColor = [UIColor whiteColor];
     
     //背景imageview
     _bgImageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, MAIN_W, 360)];
@@ -302,7 +304,7 @@
 - (void)initData
 {
     self.songsArray = [[NSMutableArray alloc] init];
-    _tinguid = @"1383";
+//    _tinguid = @"1383";
     _limits = @"50";
     _order = @"2";
 }
@@ -331,7 +333,9 @@
      method=baidu.ting.artist.getSongList&format=json&tinguid=1383&artistid=(null)&limits=50&order=2&offset=0&version=5.2.1&from=ios&channel=appstore
 
      */
-    NSString  * urlString = [NSString stringWithFormat:@"%@?method=%@&format=json&tinguid=%@&artistid=%@&limits=%@&order=%@&offset=0&version=5.2.1&from=ios&channel=appstore",URL_SERVER_ADDRESS_1,@"baidu.ting.artist.getSongList",_tinguid,_artistid,_limits,_order];
+    
+    
+    NSString  * urlString = [NSString stringWithFormat:@"%@?method=%@&format=json&tinguid=%@&artistid=%@&limits=%@&order=%@&offset=0&version=5.2.1&from=ios&channel=appstore",URL_SERVER_ADDRESS_1,@"baidu.ting.artist.getSongList",_singerModel.ting_uid,_singerModel.artist_id,_limits,_order];
     YKLog(@"url = %@",urlString);
     SFRequest * request = [[SFRequest alloc] init];
     [request request:urlString params:nil success:^(id json) {
@@ -403,47 +407,45 @@
 #pragma mark -- <UITableViewDelegate>
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // http://tingapi.ting.baidu.com/v1/restserver/ting?songid=1996607&method=baidu.ting.song.getinfo&format=json
+    SFSongModel * songModel = self.songsArray[indexPath.row];
     
+    NSString * urlString = [NSString stringWithFormat:@"%@?songid=%@&method=%@&format=%@",URL_SERVER_ADDRESS_1,songModel.song_id,@"baidu.ting.song.getinfo",@"json"];
+    SFRequest * request = [[SFRequest alloc] init];
+    [request request:urlString params:nil success:^(id json) {
+        
+        [self playMusicWithJson:json];
+        
+    } failure:^(NSError *error) {
+        YKLog(@"error = %@",error);
+    }];
+}
+- (void)playMusicWithJson:(id)json
+{
+    NSDictionary * songUrl = json[@"songurl"];
+    NSArray * urlArray = songUrl[@"url"];
+    NSMutableArray * songUrlArray = [NSMutableArray array];
+    for(NSDictionary * urlDic in urlArray){
+        SFSongUrl * songUrl =  [SFSongUrl objectWithKeyValues:urlDic];
+        [songUrlArray addObject:songUrl];
+    }
+    NSDictionary * songInfoDic = [json objectForKey:@"songinfo"];
+    SongInfo * songInfo = [SongInfo objectWithKeyValues:songInfoDic];
     
+    //    NSString * fielLink = [[url objectAtIndex:0] objectForKey:@"file_link"];
+    SFRadioViewController * radioVC = [SFRadioViewController sharedInstance];
+    radioVC.songUrlArray = songUrlArray;
+    radioVC.songInfo = songInfo;
+    [radioVC playMusic];
+    
+    // NSLog(@"json = %@",json);
+    //    [self dealWithRequestData];
 }
 #pragma mark -- <UIScrollViewDelegate>
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    YKLog(@"y = %f",_uperScrollview.contentOffset.y);
-//    if(_uperScrollview.contentOffset.y <= -100){
-//      //  [scrollView setContentOffset:scrollView.contentOffset animated:NO];
-//     //   scrollView.userInteractionEnabled = NO;
-//        
-//     //   [_uperScrollview removeFromSuperview];
-//        if(_uperScrollview.gestureRecognizers.count != 0){
-//            UIPanGestureRecognizer * gesture =  [_uperScrollview.gestureRecognizers lastObject];
-//            YKLog(@"gesture = %@",gesture);
-//            _uperScrollview.contentOffset = CGPointMake(0, -100);
-//            [_bgScrollview addSubview:_uperScrollview];
-//            _uperScrollview.contentOffset = CGPointMake(0, -100);
-//            _uperScrollview.scrollEnabled = NO;
-//            
-//            //   _uperScrollview.contentOffset = scrollView.contentOffset;
-//            //   _uperScrollview.contentOffset = point;
-//            
-//            
-//            [_bgScrollview addGestureRecognizer:gesture];
-//            
-//        }else
-//            return;
-//        
-//        
-//        
-//    }
-    
-  //  NSLog(@"%s",__FUNCTION__);
-    
-    NSArray * gestureArray = scrollView.gestureRecognizers;
- //   YKLog(@"gestureArray = %@",gestureArray);
-    
     if(_uperScrollview.contentOffset.y > 240-64){
         [_navigationBar removeFromSuperview];
-      //  [self.navigationController setNavigationBarHidden:NO animated:YES];
         self.navigationController.navigationBar.hidden = NO;
     }else{
         [self.view addSubview:_navigationBar];
@@ -467,36 +469,36 @@
 }
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
 {
-    NSLog(@"%s",__FUNCTION__);
+  //  NSLog(@"%s",__FUNCTION__);
 }
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    NSLog(@"%s",__FUNCTION__);
+  //  NSLog(@"%s",__FUNCTION__);
 }
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
-    NSLog(@"%s",__FUNCTION__);
+  //  NSLog(@"%s",__FUNCTION__);
 }
 
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-     NSLog(@"%s",__FUNCTION__);
+   //  NSLog(@"%s",__FUNCTION__);
     _isDragging = NO;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-     NSLog(@"%s",__FUNCTION__);
+  //   NSLog(@"%s",__FUNCTION__);
     _isDragging = YES;
 }
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
-     NSLog(@"%s",__FUNCTION__);
+   //  NSLog(@"%s",__FUNCTION__);
 }
 
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
 {
-     NSLog(@"%s",__FUNCTION__);
+   //  NSLog(@"%s",__FUNCTION__);
 }
 @end
